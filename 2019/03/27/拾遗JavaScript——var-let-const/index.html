@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>拾遗——webpack4（二）Babel - Asensiki</title>
+<title>拾遗JavaScript——var-let-const - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -10,29 +10,20 @@
 
 
 
-<meta name="description" content="webpack4">
 
 
 
 
-
-    <meta name="description" content="webpack4">
-<meta property="og:type" content="article">
-<meta property="og:title" content="拾遗——webpack4（二）Babel">
-<meta property="og:url" content="http://yoursite.com/2019/03/04/拾遗——webpack4（二）Babel/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="拾遗JavaScript——var-let-const">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/拾遗JavaScript——var-let-const/index.html">
 <meta property="og:site_name" content="Asensiki">
-<meta property="og:description" content="webpack4">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a13t1t57j30sg0b4weu.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29asaqp0yj31do072gmg.jpg">
-<meta property="og:updated_time" content="2019-06-22T10:27:18.399Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
+<meta property="og:updated_time" content="2019-07-09T06:39:59.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗——webpack4（二）Babel">
-<meta name="twitter:description" content="webpack4">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a13t1t57j30sg0b4weu.jpg">
+<meta name="twitter:title" content="拾遗JavaScript——var-let-const">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
 
 
 
@@ -98,13 +89,13 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="Buscar" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
             <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
+                <a class="navbar-item" title="Tabla de Contenidos">
                     <i class="fa fa-list"></i>
                 </a>
                 <div class="navbar-dropdown is-right">
@@ -112,13 +103,31 @@
                     
                     
                     
-                    <a class="navbar-item" href="#Babel">1&nbsp;&nbsp;<b>Babel</b></a>
+                    <a class="navbar-item" href="#变量的声明方式">1&nbsp;&nbsp;<b>变量的声明方式</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#var">1.1&nbsp;&nbsp;var</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#let">1.2&nbsp;&nbsp;let</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#const">1.3&nbsp;&nbsp;const</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#">2&nbsp;&nbsp;<b></b></a>
+                    <a class="navbar-item" href="#变量提升">2&nbsp;&nbsp;<b>变量提升</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#暂时性死区">3&nbsp;&nbsp;<b>暂时性死区</b></a>
                     
                 </div>
             </div>
@@ -140,60 +149,44 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            拾遗——webpack4（二）Babel
+            拾遗JavaScript——var-let-const
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-03-03T17:11:50.000Z" itemprop="datePublished">3月 4 2019</time>
+            <time datetime="2019-03-27T14:58:32.000Z" itemprop="datePublished">3月 27 2019</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/categories/Web/Webpack/">Webpack</a>
+            <a class="article-category-link" href="/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            4 分钟 read (About 543 words)
+            2 分钟 de lectura (Alrededor de 259 palabras)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a13t1t57j30sg0b4weu.jpg" alt></p>
+        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
 <a id="more"></a>
-<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>Babel 是什么？主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。</p>
-<p>1、执行以下命令安装所需要的package</p>
-<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader @babel/core @babel/preset-env</span><br><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></table></figure>
+<h2 id="变量的声明方式"><a href="#变量的声明方式" class="headerlink" title="变量的声明方式"></a>变量的声明方式</h2><h3 id="var"><a href="#var" class="headerlink" title="var"></a>var</h3><p>声明局部变量和全局变量。</p>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>声明一个块级作用域的局部变量。</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>声明一个块级作用域的只读常量(需要初始值)。</p>
+<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<ul>
-<li>babel-loader : 这是Webpack的Babel插件，它将被添加到Webpack配置中，以指示它在捆绑过程中通过Babel运行目标文件；</li>
-<li>@babel/core</li>
-<li>@babel/preset-env：通过根据目标浏览器或运行时环境自动确定所需的Babel插件和polyfill，将代码编译为ES5</li>
-<li>@babel/polyfill：垫片，转化ES6内置语法（Array.from,Object.assign等）</li>
-</ul>
+<p>实际上上部分的代码可以理解为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a); </span><br><span class="line">a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "@babel/core": "^7.4.3",</span><br><span class="line">    "@babel/preset-env": "^7.4.3",</span><br><span class="line">    "babel-loader": "^8.0.5",</span><br><span class="line">    "clean-webpack-plugin": "^2.0.1",</span><br><span class="line">    "webpack": "^4.30.0",</span><br><span class="line">    "webpack-cli": "^3.3.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123;</span><br><span class="line">    "@babel/polyfill": "^7.4.3"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>2、新建babel配置文件<code>.babelrc</code> 来配置babel</p>
-<figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"@babel/preset-env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、在<code>webpack.config.js</code>中配置babel-loader</p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.js$/</span>, <span class="hljs-comment">//匹配js文件</span></span><br><span class="line">            exclude: <span class="hljs-regexp">/node_modules/</span>, <span class="hljs-comment">//忽略目标文件夹</span></span><br><span class="line">            loader: <span class="hljs-string">"babel-loader"</span> <span class="hljs-comment">// 使用babel-loader</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>4、验证</p>
-<p>在index.js中使用ES6语法</p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// import '@babel/polyfill'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>];</span><br><span class="line"><span class="hljs-keyword">const</span> fn = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(...arr);</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
-<div class="tip"><br>    这里还需要<code>import &#39;@babel/polyfill&#39;</code><br>    全局引入打包后体积大、根据需要转译的文件按需引用又很麻烦，这里只需要配置一下<code>babelrc</code>，babel自动转译<br></div>
+<p>这就是变量提升。</p>
+<div class="tip"><br>对于函数来说，只有函数声明会被提升到顶部，而函数表达式不会被提升。<br></div>
 
-<p><code>.babelrc</code></p>
-<figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"presets"</span>: [</span><br><span class="line">        [</span><br><span class="line">            <span class="hljs-string">"@babel/preset-env"</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="hljs-attr">"useBuiltIns"</span>: <span class="hljs-string">"usage"</span>,</span><br><span class="line">                <span class="hljs-attr">"corejs"</span>: <span class="hljs-string">"3"</span> //使用core-js@<span class="hljs-number">3</span>版本</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="tip"><br>    这里遇到一个小坑，配置完<code>.babelrc</code>后执行<code>npm run build</code>，控制台首先会提示一段警告: 大概意思就是指定用什么版本的<code>core-js</code>,默认使用<code>core-js@2</code>版本<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg" alt><br>    然后报错<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg" alt><br>    这里配置一下<code>core-js</code>的版本<br></div>
-
-<p>执行<code>npm run build</code><br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg" alt></p>
-<p> 浏览器中打开<code>dist</code>文件夹下的<code>index.html</code>，查看控制台输出。<br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29asaqp0yj31do072gmg.jpg" alt></p>
-<p><div class="tip"><br>    Chrome最新版是支持ES6语法的，最好的还是在IE下测试。</div></p>
-<h2 id><a href="#" class="headerlink" title></a></h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">baz(); <span class="comment">// baz is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> baz = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"bar2"</span>); </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h2><p>let（const）将不会提升变量到代码块的顶部。因此，在变量声明之前引用这个变量，将抛出引用错误（ReferenceError）。这个变量将从代码块一开始的时候就处在一个“暂时性死区”，直到这个变量被声明为止。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>; <span class="comment">//a is not defined</span></span><br></pre></td></tr></table></figure>
     
     </div>
     
@@ -201,12 +194,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/03/05/拾遗——webpack4（三）处理图片/">拾遗——webpack4（三）处理图片</a>
+            <a href="/2019/04/09/拾遗JavaScript——Event-Loop/">拾遗JavaScript——Event Loop</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/03/02/拾遗——webpack4（一）入门/">拾遗——webpack4（一）入门</a>
+            <a href="/2019/03/22/拾遗JavaScript——this/">拾遗JavaScript——this</a>
             
         </span>
     </div>
@@ -394,7 +387,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Escribe algo...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -407,10 +400,10 @@
         var INSIGHT_CONFIG = {
             TRANSLATION: {
                 POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
+                PAGES: 'Páginas',
+                CATEGORIES: 'Categorías',
                 TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                UNTITLED: '(Sin título)',
             },
             CONTENT_URL: '/content.json',
         };

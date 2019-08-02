@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>拾遗——JavaScript-async/await - Asensiki</title>
+<title>拾遗webpack4（二）——Babel - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -10,20 +10,29 @@
 
 
 
+<meta name="description" content="webpack4">
 
 
 
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="拾遗——JavaScript-async&#x2F;await">
-<meta property="og:url" content="http://yoursite.com/2019/03/12/拾遗——JavaScript-async-await/index.html">
+
+    <meta name="description" content="webpack4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拾遗webpack4（二）——Babel">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/拾遗webpack4（二）——Babel/index.html">
 <meta property="og:site_name" content="Asensiki">
+<meta property="og:description" content="webpack4">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
-<meta property="og:updated_time" content="2019-06-22T10:30:37.955Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a13t1t57j30sg0b4weu.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29asaqp0yj31do072gmg.jpg">
+<meta property="og:updated_time" content="2019-06-22T11:05:12.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗——JavaScript-async&#x2F;await">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
+<meta name="twitter:title" content="拾遗webpack4（二）——Babel">
+<meta name="twitter:description" content="webpack4">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a13t1t57j30sg0b4weu.jpg">
 
 
 
@@ -89,13 +98,13 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="Buscar" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
             <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
+                <a class="navbar-item" title="Tabla de Contenidos">
                     <i class="fa fa-list"></i>
                 </a>
                 <div class="navbar-dropdown is-right">
@@ -103,27 +112,7 @@
                     
                     
                     
-                    <a class="navbar-item" href="#async-await">1.1&nbsp;&nbsp;async/await</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#描述">1.2&nbsp;&nbsp;描述</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#🌰">1.2.1&nbsp;&nbsp;🌰</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#错误处理-try-catch">2&nbsp;&nbsp;<b>错误处理 (try/catch)</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#async-await-hell">3&nbsp;&nbsp;<b>async/await hell</b></a>
+                    <a class="navbar-item" href="#Babel">1&nbsp;&nbsp;<b>Babel</b></a>
                     
                 </div>
             </div>
@@ -145,56 +134,59 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            拾遗——JavaScript-async/await
+            拾遗webpack4（二）——Babel
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-03-12T12:10:26.000Z" itemprop="datePublished">3月 12 2019</time>
+            <time datetime="2019-03-03T17:11:50.000Z" itemprop="datePublished">3月 4 2019</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+            <a class="article-category-link" href="/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/categories/Web/Webpack/">Webpack</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            3 分钟 read (About 403 words)
+            4 分钟 de lectura (Alrededor de 549 palabras)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
+        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a13t1t57j30sg0b4weu.jpg" alt></p>
 <a id="more"></a>
-<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><ul>
-<li>async/await 同 Promise、callback 一样是一种编写异步代码的方法。</li>
-<li>async/await 实际上是建立在promises之上的，其返回的是一个promise。</li>
-<li>async/await 是非阻塞的。</li>
-<li>async/await 更像是同步代码，如果多个异步代码没有依赖性却使用了 await 会导致性能上的降低。</li>
+<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>Babel 是什么？主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。</p>
+<p>1、执行以下命令安装所需要的package</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader @babel/core @babel/preset-env</span><br><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>babel-loader : 这是Webpack的Babel插件，它将被添加到Webpack配置中，以指示它在捆绑过程中通过Babel运行目标文件；</li>
+<li>@babel/core</li>
+<li>@babel/preset-env：通过根据目标浏览器或运行时环境自动确定所需的Babel插件和polyfill，将代码编译为ES5</li>
+<li>@babel/polyfill：垫片，转化ES6内置语法（Array.from,Object.assign等）</li>
 </ul>
-<h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>当调用一个 async 函数时，会返回一个 Promise 对象。当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。</p>
-<p>async 函数中可能会有 await 表达式，这会使 async 函数暂停执行，等待 Promise  的结果出来，然后恢复async函数的执行并返回解析值（resolved）。</p>
-<div class="tip"><br>注意， await 关键字仅仅在 async function中有效。如果在 async function函数体外使用 await ，你只会得到一个语法错误（SyntaxError）。<br></div>
-
-<blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function</a></p>
 </blockquote>
-<h4 id="🌰"><a href="#🌰" class="headerlink" title="🌰"></a>🌰</h4><p>假设一个函数<code>getJsonData()</code> 来获取Json数据。</p>
-<p><code>promise</code></p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> request = <span class="hljs-function">(<span class="hljs-params">url</span>)=&gt;</span>&#123;</span><br><span class="line">    getJsonData(url).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(response.data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>async/await</code></p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> request = <span class="hljs-keyword">async</span> (url) =&gt; &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">await</span> getJsonData(url));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>看这样看起来，async/await 是不是简洁了很多？ 毕竟写一堆 <code>then</code> 也是很烦的。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "@babel/core": "^7.4.3",</span><br><span class="line">    "@babel/preset-env": "^7.4.3",</span><br><span class="line">    "babel-loader": "^8.0.5",</span><br><span class="line">    "clean-webpack-plugin": "^2.0.1",</span><br><span class="line">    "webpack": "^4.30.0",</span><br><span class="line">    "webpack-cli": "^3.3.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123;</span><br><span class="line">    "@babel/polyfill": "^7.4.3"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>2、新建babel配置文件<code>.babelrc</code> 来配置babel</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"presets"</span>: [<span class="string">"@babel/preset-env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、在<code>webpack.config.js</code>中配置babel-loader</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>, <span class="comment">//匹配js文件</span></span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>, <span class="comment">//忽略目标文件夹</span></span><br><span class="line">            loader: <span class="string">"babel-loader"</span> <span class="comment">// 使用babel-loader</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>4、验证</p>
+<p>在index.js中使用ES6语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import '@babel/polyfill'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>];</span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(...arr);</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote warning"><p>这里还需要<code>import &#39;@babel/polyfill&#39;</code><br>全局引入打包后体积大、根据需要转译的文件按需引用又很麻烦，这里只需要配置一下<code>babelrc</code>，babel自动转译</p>
 </blockquote>
-<h2 id="错误处理-try-catch"><a href="#错误处理-try-catch" class="headerlink" title="错误处理 (try/catch)"></a>错误处理 (try/catch)</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code snippet</span><br></pre></td></tr></table></figure>
-<h2 id="async-await-hell"><a href="#async-await-hell" class="headerlink" title="async/await hell"></a>async/await hell</h2><div class="tip"><br>    async/await 把我们从曾经的<code>callback hell</code> 中解放，而现在，我们陷入了<code>async/await hell</code>。<br></div>
+<figure class="highlight json"><figcaption><span>.babelrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"presets"</span>: [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>,</span><br><span class="line">                <span class="attr">"corejs"</span>: <span class="string">"3"</span> //使用core-js@<span class="number">3</span>版本</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="tip"><br>    这里遇到一个小坑，配置完<code>.babelrc</code>后执行<code>npm run build</code>，控制台首先会提示一段警告: 大概意思就是指定用什么版本的<code>core-js</code>,默认使用<code>core-js@2</code>版本<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg" alt><br>    然后报错<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg" alt><br>    这里配置一下<code>core-js</code>的版本<br></div>
 
-
+<p>执行<code>npm run build</code><br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg" alt></p>
+<p> 浏览器中打开<code>dist</code>文件夹下的<code>index.html</code>，查看控制台输出。<br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29asaqp0yj31do072gmg.jpg" alt></p>
+<blockquote class="colorquote danger"><p>Chrome最新版是支持ES6语法的，最好的还是在IE下测试。</p>
+</blockquote>
     
     </div>
     
@@ -202,12 +194,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/04/27/拾遗——JavaScript-var-let-const/">拾遗——JavaScript-var/let/const</a>
+            <a href="/2019/03/05/拾遗webpack4（三）——处理图片/">拾遗webpack4（三）——处理图片</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/03/10/拾遗——JavaScript-Promise/">拾遗——JavaScript-Promise</a>
+            <a href="/2019/03/02/拾遗webpack4（一）——入门/">拾遗webpack4（一）——入门</a>
             
         </span>
     </div>
@@ -395,7 +387,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Escribe algo...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -408,10 +400,10 @@
         var INSIGHT_CONFIG = {
             TRANSLATION: {
                 POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
+                PAGES: 'Páginas',
+                CATEGORIES: 'Categorías',
                 TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                UNTITLED: '(Sin título)',
             },
             CONTENT_URL: '/content.json',
         };
