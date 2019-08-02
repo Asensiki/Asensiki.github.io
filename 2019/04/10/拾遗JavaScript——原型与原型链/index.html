@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Asensiki</title>
+<title>拾遗JavaScript——原型与原型链 - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -14,13 +14,16 @@
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Asensiki">
-<meta property="og:url" content="http://Wiimz.coding.me/blog/page/2/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="拾遗JavaScript——原型与原型链">
+<meta property="og:url" content="http://Wiimz.coding.me/blog/2019/04/10/拾遗JavaScript——原型与原型链/index.html">
 <meta property="og:site_name" content="Asensiki">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
+<meta property="og:updated_time" content="2019-08-02T08:39:21.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asensiki">
+<meta name="twitter:title" content="拾遗JavaScript——原型与原型链">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
 
 
 
@@ -91,6 +94,36 @@
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#原型与原型链">1&nbsp;&nbsp;<b>原型与原型链</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#一、prototype">1.1&nbsp;&nbsp;一、prototype</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#constructor-NaN">1.1.1&nbsp;&nbsp;constructor</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#二、-proto">1.2&nbsp;&nbsp;二、__proto__</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#三、梳理">1.3&nbsp;&nbsp;三、梳理</a>
+                    
+                </div>
+            </div>
+            
             
             <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
                 
@@ -105,138 +138,71 @@
 
     <section class="section">
     <div class="container">
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
+    <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/blog/2019/03/04/拾遗webpack4（二）——Babel/" itemprop="url">拾遗webpack4（二）——Babel</a>
+            拾遗JavaScript——原型与原型链
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-03-03T17:11:50.000Z" itemprop="datePublished">3月 4 2019</time>
+            <time datetime="2019-04-10T12:34:57.000Z" itemprop="datePublished">4月 10 2019</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/blog/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/blog/categories/Web/Webpack/">Webpack</a>
+            <a class="article-category-link" href="/blog/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/blog/categories/Web/Javascript/">Javascript</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            4 分钟 read (About 543 words)
+            2 分钟 read (About 240 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="https://i.loli.net/2019/08/02/5d43f48b99b2a84083.jpg" alt></p>
-        <p class="article-more-link">
-            <a href="/blog/2019/03/04/拾遗webpack4（二）——Babel/#more">Read More</a>
-        </p>
+        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
+<a id="more"></a>
+<h1 id="原型与原型链"><a href="#原型与原型链" class="headerlink" title="原型与原型链"></a>原型与原型链</h1><h2 id="一、prototype"><a href="#一、prototype" class="headerlink" title="一、prototype"></a>一、prototype</h2><p>基本上每个函数都有prototype属性，它是一个显式属性。</p>
+<p>当我们创建一个函数时，这个属性就自动被创建。</p>
+<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到prototype属性是一个对象，里面包含一个<code>constructor</code>属性。</p>
+<p>而<code>constructor</code>属性中有也有一个<code>prototype</code> ,它指向这个函数<code>fn</code>。</p>
+<h5 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h5><p>​    <code>constructor</code> 是一个不可枚举的属性，一旦改变函数的prototype，新对象的<code>constructor</code> 属性便会丢失。</p>
+<p>&lt;!&gt;</p>
+<p>有一个例外:</p>
+<blockquote class="colorquote warning"><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 例如用这样的方式创建一个函数，则不会有prototype</span></span><br><span class="line"><span class="hljs-keyword">let</span> fn = Funciton.prototypr.bind();</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="二、-proto"><a href="#二、-proto" class="headerlink" title="二、__proto__"></a>二、<code>__proto__</code></h2><p><code>__proto__</code> 是每一个对象都有的隐式属性，它指向创建该对象的构造函数的<code>[[prototype]]</code>。</p>
+<h2 id="三、梳理"><a href="#三、梳理" class="headerlink" title="三、梳理"></a>三、梳理</h2><p><strong>此处贴上图腾：</strong></p>
+<!-- tip -->
+<blockquote class="colorquote info|success|warning|danger"></blockquote>
+<!-- 代码 -->
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
     
     </div>
     
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/blog/2019/04/09/拾遗JavaScript——Event-Loop/">拾遗JavaScript——Event Loop</a>
+            
+        </span>
+    </div>
     
 </article>
 
 
 
 
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/blog/2019/03/02/拾遗webpack4（一）——入门/" itemprop="url">拾遗webpack4（一）——入门</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            <time datetime="2019-03-02T13:49:51.000Z" itemprop="datePublished">3月 2 2019</time>
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/blog/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/blog/categories/Web/Webpack/">Webpack</a>
-        </span>
-        
-        
-        <span class="column is-narrow">
-            
-            
-            10 分钟 read (About 1558 words)
-        </span>
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <p><img src="https://i.loli.net/2019/08/02/5d43f48b25dde90885.jpg" alt></p>
-        <p class="article-more-link">
-            <a href="/blog/2019/03/02/拾遗webpack4（一）——入门/#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/blog/2019/03/01/Hola/" itemprop="url">Hola</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            <time datetime="2019-03-01T13:44:55.000Z" itemprop="datePublished">3月 1 2019</time>
-        </span>
-        
-        
-        <span class="column is-narrow">
-            
-            
-            几秒 read (About 9 words)
-        </span>
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <p>心情不好～<br>写点什么…</p>
-
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-    
-        
-<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
-    <div class="pagination-previous">
-        <a href="/blog/">Prev</a>
-    </div>
-    <div class="pagination-next is-invisible is-hidden-mobile">
-        <a href="/blog/page/3/">Next</a>
-    </div>
-    <ul class="pagination-list is-hidden-mobile">
-        
-        <li><a class="pagination-link" href="/blog/">1</a></li>
-        
-        <li><a class="pagination-link is-current" href="/blog/page/2/">2</a></li>
-        
-    </ul>
-</nav>
-    
     </div>
 </section>
     <footer class="footer">
