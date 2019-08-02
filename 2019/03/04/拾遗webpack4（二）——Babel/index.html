@@ -19,7 +19,7 @@
     <meta name="description" content="webpack4">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗webpack4（二）——Babel">
-<meta property="og:url" content="http://Wiimz.coding.me/blog/2019/03/04/拾遗webpack4（二）——Babel/index.html">
+<meta property="og:url" content="http://asensiki.github.io/2019/03/04/拾遗webpack4（二）——Babel/index.html">
 <meta property="og:site_name" content="Asensiki">
 <meta property="og:description" content="webpack4">
 <meta property="og:locale" content="zh-CN">
@@ -51,7 +51,7 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
-<link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -76,9 +76,9 @@
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item navbar-logo" href="/blog/">
+            <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/blog/images/logo.png" alt height="28">
+                <img src="/images/logo.png" alt height="28">
                 
             </a>
             <div class="navbar-burger">
@@ -90,9 +90,9 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/blog/archives">Archives</a>
+            <a class="navbar-item " href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/blog/categories">categories</a>
+            <a class="navbar-item " href="/categories">categories</a>
             
         </div>
         
@@ -144,7 +144,7 @@
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/blog/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/blog/categories/Web/Webpack/">Webpack</a>
+            <a class="article-category-link" href="/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/categories/Web/Webpack/">Webpack</a>
         </span>
         
         
@@ -161,7 +161,7 @@
 <a id="more"></a>
 <h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>Babel 是什么？主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。</p>
 <p>1、执行以下命令安装所需要的 package</p>
-<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader @babel/core @babel/preset-env</span><br><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader @babel/core @babel/preset-env</span><br><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
 <li>babel-loader : 这是 Webpack 的 Babel 插件，它将被添加到 Webpack 配置中，以指示它在捆绑过程中通过 Babel 运行目标文件；</li>
@@ -172,17 +172,17 @@
 <li>@babel/preset-env：通过根据目标浏览器或运行时环境自动确定所需的 Babel 插件和 polyfill，将代码编译为 ES5</li>
 <li>@babel/polyfill：垫片，转化 ES6 内置语法（Array.from,Object.assign 等）</li>
 </ul>
-<figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "@babel/core": "^7.4.3",</span><br><span class="line">    "@babel/preset-env": "^7.4.3",</span><br><span class="line">    "babel-loader": "^8.0.5",</span><br><span class="line">    "clean-webpack-plugin": "^2.0.1",</span><br><span class="line">    "webpack": "^4.30.0",</span><br><span class="line">    "webpack-cli": "^3.3.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123;</span><br><span class="line">    "@babel/polyfill": "^7.4.3"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "@babel/core": "^7.4.3",</span><br><span class="line">    "@babel/preset-env": "^7.4.3",</span><br><span class="line">    "babel-loader": "^8.0.5",</span><br><span class="line">    "clean-webpack-plugin": "^2.0.1",</span><br><span class="line">    "webpack": "^4.30.0",</span><br><span class="line">    "webpack-cli": "^3.3.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123;</span><br><span class="line">    "@babel/polyfill": "^7.4.3"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>2、新建 babel 配置文件<code>.babelrc</code> 来配置 babel</p>
-<figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"@babel/preset-env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [<span class="string">"@babel/preset-env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3、在<code>webpack.config.js</code>中配置 babel-loader</p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="hljs-regexp">/\.js$/</span>, <span class="hljs-comment">//匹配js文件</span></span><br><span class="line">      exclude: <span class="hljs-regexp">/node_modules/</span>, <span class="hljs-comment">//忽略目标文件夹</span></span><br><span class="line">      loader: <span class="hljs-string">"babel-loader"</span> <span class="hljs-comment">// 使用babel-loader</span></span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.js$/</span>, <span class="comment">//匹配js文件</span></span><br><span class="line">      exclude: <span class="regexp">/node_modules/</span>, <span class="comment">//忽略目标文件夹</span></span><br><span class="line">      loader: <span class="string">"babel-loader"</span> <span class="comment">// 使用babel-loader</span></span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>4、验证</p>
 <p>在 index.js 中使用 ES6 语法</p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// import '@babel/polyfill'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>];</span><br><span class="line"><span class="hljs-keyword">const</span> fn = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(...arr);</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import '@babel/polyfill'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>];</span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(...arr);</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
 <blockquote class="colorquote warning"><p>这里还需要<code>import &#39;@babel/polyfill&#39;</code><br>全局引入打包后体积大、根据需要转译的文件按需引用又很麻烦，这里只需要配置一下<code>babelrc</code>，babel 自动转译</p>
 </blockquote>
-<figure class="highlight json hljs"><figcaption><span>.babelrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="hljs-attr">"presets"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="hljs-string">"@babel/preset-env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-attr">"useBuiltIns"</span>: <span class="hljs-string">"usage"</span>,</span><br><span class="line">        <span class="hljs-attr">"corejs"</span>: <span class="hljs-string">"3"</span> //使用core-js@<span class="hljs-number">3</span>版本</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><figcaption><span>.babelrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>,</span><br><span class="line">        <span class="attr">"corejs"</span>: <span class="string">"3"</span> //使用core-js@<span class="number">3</span>版本</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <div class="tip"><br>    这里遇到一个小坑，配置完<code>.babelrc</code>后执行<code>npm run build</code>，控制台首先会提示一段警告: 大概意思就是指定用什么版本的<code>core-js</code>,默认使用<code>core-js@2</code>版本<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg" alt><br>    然后报错<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg" alt><br>    这里配置一下<code>core-js</code>的版本<br></div>
 
 <p>执行<code>npm run build</code><br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg" alt></p>
@@ -197,12 +197,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/blog/2019/03/05/拾遗webpack4（三）——处理图片/">拾遗webpack4（三）——处理图片</a>
+            <a href="/2019/03/05/拾遗webpack4（三）——处理图片/">拾遗webpack4（三）——处理图片</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/blog/2019/03/02/拾遗webpack4（一）——入门/">拾遗webpack4（一）——入门</a>
+            <a href="/2019/03/02/拾遗webpack4（一）——入门/">拾遗webpack4（一）——入门</a>
             
         </span>
     </div>
@@ -383,7 +383,7 @@
     
 
 
-<script src="/blog/js/script.js"></script>
+<script src="/js/script.js"></script>
 
     
     <div class="searchbox ins-search">
@@ -408,12 +408,12 @@
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
-            CONTENT_URL: '/blog/content.json',
+            CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script src="/blog/js/insight.js"></script>
+<script src="/js/insight.js"></script>
     
 </body>
 </html>

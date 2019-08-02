@@ -16,7 +16,7 @@
 
     <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗JavaScript——原型与原型链">
-<meta property="og:url" content="http://Wiimz.coding.me/blog/2019/04/10/拾遗JavaScript——原型与原型链/index.html">
+<meta property="og:url" content="http://asensiki.github.io/2019/04/10/拾遗JavaScript——原型与原型链/index.html">
 <meta property="og:site_name" content="Asensiki">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
@@ -42,7 +42,7 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
-<link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -67,9 +67,9 @@
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item navbar-logo" href="/blog/">
+            <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/blog/images/logo.png" alt height="28">
+                <img src="/images/logo.png" alt height="28">
                 
             </a>
             <div class="navbar-burger">
@@ -81,9 +81,9 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/blog/archives">Archives</a>
+            <a class="navbar-item " href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/blog/categories">categories</a>
+            <a class="navbar-item " href="/categories">categories</a>
             
         </div>
         
@@ -151,7 +151,7 @@
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/blog/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/blog/categories/Web/Javascript/">Javascript</a>
+            <a class="article-category-link" href="/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
         </span>
         
         
@@ -168,13 +168,13 @@
 <a id="more"></a>
 <h1 id="原型与原型链"><a href="#原型与原型链" class="headerlink" title="原型与原型链"></a>原型与原型链</h1><h2 id="一、prototype"><a href="#一、prototype" class="headerlink" title="一、prototype"></a>一、prototype</h2><p>基本上每个函数都有prototype属性，它是一个显式属性。</p>
 <p>当我们创建一个函数时，这个属性就自动被创建。</p>
-<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到prototype属性是一个对象，里面包含一个<code>constructor</code>属性。</p>
 <p>而<code>constructor</code>属性中有也有一个<code>prototype</code> ,它指向这个函数<code>fn</code>。</p>
 <h5 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h5><p>​    <code>constructor</code> 是一个不可枚举的属性，一旦改变函数的prototype，新对象的<code>constructor</code> 属性便会丢失。</p>
 <p>&lt;!&gt;</p>
 <p>有一个例外:</p>
-<blockquote class="colorquote warning"><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 例如用这样的方式创建一个函数，则不会有prototype</span></span><br><span class="line"><span class="hljs-keyword">let</span> fn = Funciton.prototypr.bind();</span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote warning"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例如用这样的方式创建一个函数，则不会有prototype</span></span><br><span class="line"><span class="keyword">let</span> fn = Funciton.prototypr.bind();</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h2 id="二、-proto"><a href="#二、-proto" class="headerlink" title="二、__proto__"></a>二、<code>__proto__</code></h2><p><code>__proto__</code> 是每一个对象都有的隐式属性，它指向创建该对象的构造函数的<code>[[prototype]]</code>。</p>
 <h2 id="三、梳理"><a href="#三、梳理" class="headerlink" title="三、梳理"></a>三、梳理</h2><p><strong>此处贴上图腾：</strong></p>
@@ -193,7 +193,7 @@
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/blog/2019/04/09/拾遗JavaScript——Event-Loop/">拾遗JavaScript——Event Loop</a>
+            <a href="/2019/04/09/拾遗JavaScript——Event-Loop/">拾遗JavaScript——Event Loop</a>
             
         </span>
     </div>
@@ -374,7 +374,7 @@
     
 
 
-<script src="/blog/js/script.js"></script>
+<script src="/js/script.js"></script>
 
     
     <div class="searchbox ins-search">
@@ -399,12 +399,12 @@
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
-            CONTENT_URL: '/blog/content.json',
+            CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
-<script src="/blog/js/insight.js"></script>
+<script src="/js/insight.js"></script>
     
 </body>
 </html>
