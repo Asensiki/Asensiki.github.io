@@ -19,11 +19,11 @@
 <meta property="og:url" content="http://Wiimz.coding.me/blog/2019/03/12/拾遗JavaScript——async-await/index.html">
 <meta property="og:site_name" content="Asensiki">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
-<meta property="og:updated_time" content="2019-06-22T11:04:55.269Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
+<meta property="og:updated_time" content="2019-08-02T08:31:54.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拾遗JavaScript——async-await">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
 
 
 
@@ -89,13 +89,13 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Buscar" href="javascript:;">
+            <a class="navbar-item search" title="Search" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
             <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Tabla de Contenidos">
+                <a class="navbar-item" title="Table of Contents">
                     <i class="fa fa-list"></i>
                 </a>
                 <div class="navbar-dropdown is-right">
@@ -162,32 +162,32 @@
         <span class="column is-narrow">
             
             
-            3 分钟 de lectura (Alrededor de 406 palabras)
+            3 分钟 read (About 401 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
+        <p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
 <a id="more"></a>
 <h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><ul>
 <li>async/await 同 Promise、callback 一样是一种编写异步代码的方法。</li>
-<li>async/await 实际上是建立在promises之上的，其返回的是一个promise。</li>
+<li>async/await 实际上是建立在 promises 之上的，其返回的是一个 promise。</li>
 <li>async/await 是非阻塞的。</li>
 <li>async/await 更像是同步代码，如果多个异步代码没有依赖性却使用了 await 会导致性能上的降低。</li>
 </ul>
 <h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>当调用一个 async 函数时，会返回一个 Promise 对象。当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。</p>
-<p>async 函数中可能会有 await 表达式，这会使 async 函数暂停执行，等待 Promise  的结果出来，然后恢复async函数的执行并返回解析值（resolved）。</p>
+<p>async 函数中可能会有 await 表达式，这会使 async 函数暂停执行，等待 Promise 的结果出来，然后恢复 async 函数的执行并返回解析值（resolved）。</p>
 <div class="tip"><br>注意， await 关键字仅仅在 async function中有效。如果在 async function函数体外使用 await ，你只会得到一个语法错误（SyntaxError）。<br></div>
 
 <blockquote>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function</a></p>
 </blockquote>
-<h4 id="🌰"><a href="#🌰" class="headerlink" title="🌰"></a>🌰</h4><p>假设一个函数<code>getJsonData()</code> 来获取Json数据。</p>
+<h4 id="🌰"><a href="#🌰" class="headerlink" title="🌰"></a>🌰</h4><p>假设一个函数<code>getJsonData()</code> 来获取 Json 数据。</p>
 <p><code>promise</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> request = <span class="function">(<span class="params">url</span>)=&gt;</span>&#123;</span><br><span class="line">    getJsonData(url).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(response.data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="function"><span class="params">url</span> =&gt;</span> &#123;</span><br><span class="line">  getJsonData(url).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response.data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p><code>async/await</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> request = <span class="keyword">async</span> (url) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">await</span> getJsonData(url));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="keyword">async</span> url =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">await</span> getJsonData(url));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>看这样看起来，async/await 是不是简洁了很多？ 毕竟写一堆 <code>then</code> 也是很烦的。</p>
 </blockquote>
@@ -395,7 +395,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Escribe algo...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -408,10 +408,10 @@
         var INSIGHT_CONFIG = {
             TRANSLATION: {
                 POSTS: 'Posts',
-                PAGES: 'Páginas',
-                CATEGORIES: 'Categorías',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
                 TAGS: 'Tags',
-                UNTITLED: '(Sin título)',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/blog/content.json',
         };
