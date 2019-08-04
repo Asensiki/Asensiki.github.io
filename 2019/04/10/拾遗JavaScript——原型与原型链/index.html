@@ -20,7 +20,14 @@
 <meta property="og:site_name" content="Asensiki">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
-<meta property="og:updated_time" content="2019-08-02T08:43:06.269Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/04/kpRnZaJUxwKiqBD.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/04/HC6mPZU74MSqOYD.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/04/xwN84dYJXcnpCRo.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/04/vr7CXNwhVtMAf4P.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/04/cKjMrBVQGuJP9oD.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/04/rJkRPOqhiB2TtUL.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f4c01cfe186926.png">
+<meta property="og:updated_time" content="2019-08-04T11:18:10.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拾遗JavaScript——原型与原型链">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
@@ -89,13 +96,13 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="검색" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
             <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
+                <a class="navbar-item" title="목차">
                     <i class="fa fa-list"></i>
                 </a>
                 <div class="navbar-dropdown is-right">
@@ -103,23 +110,49 @@
                     
                     
                     
-                    <a class="navbar-item" href="#原型与原型链">1&nbsp;&nbsp;<b>原型与原型链</b></a>
+                    <a class="navbar-item" href="#一、原型">1&nbsp;&nbsp;<b>一、原型</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#一、prototype">1.1&nbsp;&nbsp;一、prototype</a>
+                    <a class="navbar-item" href="#prototype">1.1&nbsp;&nbsp;prototype</a>
                     
                     
                     
-                    <a class="navbar-item" href="#constructor-NaN">1.1.1&nbsp;&nbsp;constructor</a>
+                    <a class="navbar-item" href="#函数的prototype是什么？">1.2&nbsp;&nbsp;函数的prototype是什么？</a>
                     
                     
                     
-                    <a class="navbar-item" href="#二、-proto">1.2&nbsp;&nbsp;二、__proto__</a>
+                    <a class="navbar-item" href="#😪-抽象能力差怎么办？————画图">1.2.1&nbsp;&nbsp;😪 抽象能力差怎么办？————画图</a>
                     
                     
                     
-                    <a class="navbar-item" href="#三、梳理">1.3&nbsp;&nbsp;三、梳理</a>
+                    <a class="navbar-item" href="#proto">1.3&nbsp;&nbsp;__proto__</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#😪-抽象能力差怎么办？——画图">1.3.1&nbsp;&nbsp;😪 抽象能力差怎么办？——画图</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#画图捋一捋～">1.4&nbsp;&nbsp;画图捋一捋～</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#原型的原型-？">2&nbsp;&nbsp;<b>原型的原型 ？</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#原型链">3&nbsp;&nbsp;<b>原型链</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#图腾">4&nbsp;&nbsp;<b>图腾</b></a>
                     
                 </div>
             </div>
@@ -158,7 +191,7 @@
         <span class="column is-narrow">
             
             
-            2 分钟 read (About 246 words)
+            7 分钟 소요 (약 987 단어)
         </span>
         
     </div>
@@ -166,22 +199,46 @@
     
         <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
 <a id="more"></a>
-<h1 id="原型与原型链"><a href="#原型与原型链" class="headerlink" title="原型与原型链"></a>原型与原型链</h1><h2 id="一、prototype"><a href="#一、prototype" class="headerlink" title="一、prototype"></a>一、prototype</h2><p>基本上每个函数都有 prototype 属性，它是一个显式属性。</p>
+<hr>
+<h2 id="一、原型"><a href="#一、原型" class="headerlink" title="一、原型"></a>一、原型</h2><h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a><code>prototype</code></h3><p>基本上每个函数都有 一个特殊的属性——原型（prototype），它是一个显式属性。</p>
 <p>当我们创建一个函数时，这个属性就自动被创建。</p>
 <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到 prototype 属性是一个对象，里面包含一个<code>constructor</code>属性。</p>
-<p>而<code>constructor</code>属性中有也有一个<code>prototype</code> ,它指向这个函数<code>fn</code>。</p>
-<h5 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h5><p>​ <code>constructor</code> 是一个不可枚举的属性，一旦改变函数的 prototype，新对象的<code>constructor</code> 属性便会丢失。</p>
-<p>&lt;!&gt;</p>
-<p>有一个例外:</p>
-<blockquote class="colorquote warning"><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 例如用这样的方式创建一个函数，则不会有 prototype</span></span><br><span class="line"><span class="hljs-keyword">let</span> fn = Funciton.prototypr.bind();</span><br></pre></td></tr></table></figure>
+<h3 id="函数的prototype是什么？"><a href="#函数的prototype是什么？" class="headerlink" title="函数的prototype是什么？"></a><strong>函数的prototype</strong>是什么？</h3><p> prototype 属性：继承成员定义的地方。</p>
+<p>通俗的理解为：当我们实例化一个对象时，该对象会从原型中“继承”属性和方法。</p>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animal</span>(<span class="hljs-params"></span>)</span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">animal.prototype.class = <span class="hljs-string">"animal"</span>;</span><br><span class="line"></span><br><span class="line">animal.prototype.eat = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"eat something"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> animal();</span><br><span class="line"></span><br><span class="line">cat.eat(); <span class="hljs-comment">// eat something</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// "animal"</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="😪-抽象能力差怎么办？————画图"><a href="#😪-抽象能力差怎么办？————画图" class="headerlink" title="😪 抽象能力差怎么办？————画图"></a>😪 抽象能力差怎么办？————画图</h4><p><img src="https://i.loli.net/2019/08/04/kpRnZaJUxwKiqBD.png" alt></p>
+<p>当我们打印<code>cat</code>这个实例时…….. </p>
+<p><img src="https://i.loli.net/2019/08/04/HC6mPZU74MSqOYD.png" alt></p>
+<p>What？？？</p>
+<blockquote class="colorquote info"><p>OOP思想中的继承（java，C++等）是一种对属性方法的复制操作，但对象实例<code>cat</code>中并没有复制过来的属性和方法，但在调用<code>class</code>属性和<code>eat()</code>方法时都可以正常调用。这？？？在<code>JavaScript</code> 的继承操作其实是一种“链接”操作，是一种委托，通过<code>__proto__</code> 链接到构造函数的prototype。</p>
 </blockquote>
-<h2 id="二、-proto"><a href="#二、-proto" class="headerlink" title="二、__proto__"></a>二、<code>__proto__</code></h2><p><code>__proto__</code> 是每一个对象都有的隐式属性，它指向创建该对象的构造函数的<code>[[prototype]]</code>。</p>
-<h2 id="三、梳理"><a href="#三、梳理" class="headerlink" title="三、梳理"></a>三、梳理</h2><p><strong>此处贴上图腾：</strong></p>
-<!-- tip -->
-<blockquote class="colorquote info|success|warning|danger"></blockquote>
-<!-- 代码 -->
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h3><p><code>__proto__</code> 是每一个对象（除了null）都有的隐式属性，它指向创建该对象的构造函数的<code>[[prototype]]</code>，因此我们可以访问到定义在构造函数的prototype上的属性和方法。</p>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(cat.__proto__ == animal.prototype); <span class="hljs-comment">// true</span></span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote info"><p>当使用<code>cat.__proto__</code> 时，实际上是返回<code>Object.getPrototypeOf(cat)</code>。<br>可以理解为一种getter/setter操作。</p>
+</blockquote>
+<h4 id="😪-抽象能力差怎么办？——画图"><a href="#😪-抽象能力差怎么办？——画图" class="headerlink" title="😪 抽象能力差怎么办？——画图"></a>😪 抽象能力差怎么办？——画图</h4><p><img src="https://i.loli.net/2019/08/04/xwN84dYJXcnpCRo.png" alt></p>
+<hr>
+<p><code>constructor</code></p>
+<p>在<code>animal.prototype</code>中还有一个属性<code>constructor</code>,它是干什么用的？</p>
+<p><code>constructor</code>:每一个实例对象都从原型中继承一个 <code>constructor</code> 属性，它指向构造此实例对象的构造函数；</p>
+<p>因此实例<code>cat</code>的构造函数是<code>function animal()</code></p>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(animal.prototype.constructor === animal); <span class="hljs-comment">// true</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.constructor === animal); <span class="hljs-comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>我们还可以这样去创建<code>animal</code>的实例，但一般来说知道原始构造器<code>function animal()</code>的情况下不会用这样的方式。</p>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> dog = <span class="hljs-keyword">new</span> cat.constructor();</span><br><span class="line">dog.class <span class="hljs-comment">// animal</span></span><br><span class="line">dog.eat() <span class="hljs-comment">// eat something</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(dog.constructor === animal); <span class="hljs-comment">// true</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="画图捋一捋～"><a href="#画图捋一捋～" class="headerlink" title="画图捋一捋～"></a>画图捋一捋～</h3><p><img src="https://i.loli.net/2019/08/04/vr7CXNwhVtMAf4P.png" alt></p>
+<hr>
+<h2 id="原型的原型-？"><a href="#原型的原型-？" class="headerlink" title="原型的原型 ？"></a>原型的原型 ？</h2><p>捋清了实例与原型的关系,那原型的原型是什么？</p>
+<p><code>animal.prototype</code> 中也有一个属性<code>__proto__</code> , 这个<code>__proto__</code>属性指向哪？</p>
+<p><img src="https://i.loli.net/2019/08/04/cKjMrBVQGuJP9oD.png" alt></p>
+<p>在JavaScript中，函数其实也是<code>Object</code>，<code>animal.prototype.__proto__</code> 指向的是<code>Object.prototype</code></p>
+<p>而<code>Object.prototype.__proto__ === null</code></p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animal</span>(<span class="hljs-params"></span>)</span>&#123;&#125;;</span><br><span class="line">animal.prototype.class = <span class="hljs-string">"animal"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> animal();</span><br><span class="line">cat.class = <span class="hljs-string">"cat"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// cat</span></span><br><span class="line"><span class="hljs-keyword">delete</span> cat.class; <span class="hljs-comment">// 删除 cat 的 class 属性</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// animal</span></span><br><span class="line"></span><br><span class="line">cat.isPrototypeOf();</span><br><span class="line">cat.valueOf()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>由以上代码可以看出:<br>1、<code>cat.class</code> 首先在实例<code>cat</code>上寻找属性<code>class</code>，输出<code>“cat”</code>；<br>2、删除实例cat上的属性<code>class</code>，仍能调用，但输出的是<code>&quot;animal&quot;</code>，<br>这是因为当在实例上寻找不到属性<code>class</code>时，会通过<code>__proto__</code>找到<code>aminal.prototype</code>，在上面寻找到<code>class</code>，并输出<code>&quot;animal&quot;</code>;<br>3、并没有在实例<code>cat</code>或者<code>animal.prototype</code>上定义<code>isPrototypeOf()/valueOf()</code>，为什么还能调用？<br>这是因为当在实例、实例原型<code>animal.prototype</code>上找不时，解析器会继续往上，即<code>animal.prototype.__proto__</code>，直到<code>__proto__</code>指向<code>null</code>则停止寻找。此时<code>animal.prototype.__proto__</code>指向的是<code>Object.prototype</code>，所以调用上面定义的方法<code>isPrototypeOf()/valueOf()</code>;</p>
+<p>实例<code>cat</code>、构造函数<code>animal</code>的原型<code>prototype</code>、<code>Object.prototype</code> 以<code>__proto__</code>链接起来的关系就形成了原型链。</p>
+<p><img src="https://i.loli.net/2019/08/04/rJkRPOqhiB2TtUL.png" alt></p>
+<hr>
+<h2 id="图腾"><a href="#图腾" class="headerlink" title="图腾"></a>图腾</h2><p><img src="https://i.loli.net/2019/08/02/5d43f4c01cfe186926.png" alt></p>
 
     
     </div>
@@ -381,7 +438,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="아무거나 입력하세요">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -393,11 +450,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '글',
+                PAGES: '페이지',
+                CATEGORIES: '카테고리 목록',
+                TAGS: '태그 목록',
+                UNTITLED: '(제목없음)',
             },
             CONTENT_URL: '/content.json',
         };
