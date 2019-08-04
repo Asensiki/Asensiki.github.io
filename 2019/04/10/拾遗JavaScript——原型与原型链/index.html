@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/08/04/cKjMrBVQGuJP9oD.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/04/rJkRPOqhiB2TtUL.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f4c01cfe186926.png">
-<meta property="og:updated_time" content="2019-08-04T11:18:10.679Z">
+<meta property="og:updated_time" content="2019-08-04T11:19:38.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拾遗JavaScript——原型与原型链">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
@@ -96,13 +96,13 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="검색" href="javascript:;">
+            <a class="navbar-item search" title="Search" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
             <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="목차">
+                <a class="navbar-item" title="Table of Contents">
                     <i class="fa fa-list"></i>
                 </a>
                 <div class="navbar-dropdown is-right">
@@ -191,7 +191,7 @@
         <span class="column is-narrow">
             
             
-            7 分钟 소요 (약 987 단어)
+            7 分钟 read (About 985 words)
         </span>
         
     </div>
@@ -234,7 +234,7 @@
 <p>在JavaScript中，函数其实也是<code>Object</code>，<code>animal.prototype.__proto__</code> 指向的是<code>Object.prototype</code></p>
 <p>而<code>Object.prototype.__proto__ === null</code></p>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animal</span>(<span class="hljs-params"></span>)</span>&#123;&#125;;</span><br><span class="line">animal.prototype.class = <span class="hljs-string">"animal"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> animal();</span><br><span class="line">cat.class = <span class="hljs-string">"cat"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// cat</span></span><br><span class="line"><span class="hljs-keyword">delete</span> cat.class; <span class="hljs-comment">// 删除 cat 的 class 属性</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// animal</span></span><br><span class="line"></span><br><span class="line">cat.isPrototypeOf();</span><br><span class="line">cat.valueOf()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>由以上代码可以看出:<br>1、<code>cat.class</code> 首先在实例<code>cat</code>上寻找属性<code>class</code>，输出<code>“cat”</code>；<br>2、删除实例cat上的属性<code>class</code>，仍能调用，但输出的是<code>&quot;animal&quot;</code>，<br>这是因为当在实例上寻找不到属性<code>class</code>时，会通过<code>__proto__</code>找到<code>aminal.prototype</code>，在上面寻找到<code>class</code>，并输出<code>&quot;animal&quot;</code>;<br>3、并没有在实例<code>cat</code>或者<code>animal.prototype</code>上定义<code>isPrototypeOf()/valueOf()</code>，为什么还能调用？<br>这是因为当在实例、实例原型<code>animal.prototype</code>上找不时，解析器会继续往上，即<code>animal.prototype.__proto__</code>，直到<code>__proto__</code>指向<code>null</code>则停止寻找。此时<code>animal.prototype.__proto__</code>指向的是<code>Object.prototype</code>，所以调用上面定义的方法<code>isPrototypeOf()/valueOf()</code>;</p>
+<p>由以上代码可以看出:<br>1、<code>cat.class</code> 首先在实例<code>cat</code>上寻找属性<code>class</code>，输出<code>“cat”</code><br>2、删除实例cat上的属性<code>class</code>，仍能调用，但输出的是<code>&quot;animal&quot;</code><br>这是因为当在实例上寻找不到属性<code>class</code>时，会通过<code>__proto__</code>找到<code>aminal.prototype</code>，在上面寻找到<code>class</code>，并输出<code>&quot;animal&quot;</code><br>3、并没有在实例<code>cat</code>或者<code>animal.prototype</code>上定义<code>isPrototypeOf()/valueOf()</code>，为什么还能调用？<br>这是因为当在实例、实例原型<code>animal.prototype</code>上找不时，解析器会继续往上，即<code>animal.prototype.__proto__</code>，直到<code>__proto__</code>指向<code>null</code>则停止寻找。此时<code>animal.prototype.__proto__</code>指向的是<code>Object.prototype</code>，所以调用上面定义的方法<code>isPrototypeOf()/valueOf()</code></p>
 <p>实例<code>cat</code>、构造函数<code>animal</code>的原型<code>prototype</code>、<code>Object.prototype</code> 以<code>__proto__</code>链接起来的关系就形成了原型链。</p>
 <p><img src="https://i.loli.net/2019/08/04/rJkRPOqhiB2TtUL.png" alt></p>
 <hr>
@@ -438,7 +438,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="아무거나 입력하세요">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -450,11 +450,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: '글',
-                PAGES: '페이지',
-                CATEGORIES: '카테고리 목록',
-                TAGS: '태그 목록',
-                UNTITLED: '(제목없음)',
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };
