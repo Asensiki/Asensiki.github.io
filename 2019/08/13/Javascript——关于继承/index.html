@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Javascript——关于继承 - Asensiki</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+
+
+
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Javascript——关于继承">
+<meta property="og:url" content="http://asensiki.github.io/2019/08/13/Javascript——关于继承/index.html">
+<meta property="og:site_name" content="Asensiki">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/15/2NOJ5hFiM8QwXSd.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/15/GkF6Zam8eLT2Khj.png">
+<meta property="og:updated_time" content="2019-08-16T08:01:05.404Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript——关于继承">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
+
+
+
+
+
+<link rel="icon" href="./source/images/logo.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item " href="/archives">Archives</a>
+            
+            <a class="navbar-item " href="/categories">categories</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Chercher" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table des Matières">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#继承">1&nbsp;&nbsp;<b>继承</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#原型链继承">1.1&nbsp;&nbsp;原型链继承</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#🌰">1.1.1&nbsp;&nbsp;🌰</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#借用构造函数">1.2&nbsp;&nbsp;借用构造函数</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#🌰-1">1.2.1&nbsp;&nbsp;🌰</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#组合继承（原型加借用构造函数的方式）">1.3&nbsp;&nbsp;组合继承（原型加借用构造函数的方式）</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#🌰-2">1.3.1&nbsp;&nbsp;🌰</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#原型继承">1.4&nbsp;&nbsp;原型继承</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#🌰-3">1.4.1&nbsp;&nbsp;🌰</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#寄生式继承">1.5&nbsp;&nbsp;寄生式继承</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#🌰-4">1.5.1&nbsp;&nbsp;🌰</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#组合寄生式继承">1.6&nbsp;&nbsp;组合寄生式继承</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#🌰-5">1.6.1&nbsp;&nbsp;🌰</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#对比">1.6.2&nbsp;&nbsp;对比</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#总结">2&nbsp;&nbsp;<b>总结</b></a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Javascript——关于继承
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2019-08-13T08:13:26.000Z" itemprop="datePublished">8月 13 2019</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Web/">Web</a><span>></span><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            14 分钟 lire (À propos 2076 mots)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
+<a id="more"></a>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p><strong>《JavaScript高级程序设计》看了忘，忘了记～</strong></p>
+<h2 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h2><ol>
+<li>每个对象都有一个隐式属性<code>__proto__</code>其指向该对象的构造函数的原型对象。<code>prototype</code>。</li>
+<li>构造函数的原型对象<code>prototype</code>中包含一个constructor属性，其指向构造函数本身。</li>
+</ol>
+<p>因此，可以通过重写原型对象，替换为父类的实例，从而拥有父类实例的全部属性及方法。<br>这种方式即<strong>原型链继承</strong></p>
+<h3 id="🌰"><a href="#🌰" class="headerlink" title="🌰"></a>🌰</h3><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">this</span>.name = <span class="hljs-string">"Parent"</span>;</span><br><span class="line">  <span class="hljs-keyword">this</span>.numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getNumbers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.numbers);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="hljs-comment">// 重写原型对象</span></span><br><span class="line">Child.prototype = <span class="hljs-keyword">new</span> Parent();</span><br><span class="line"><span class="hljs-keyword">const</span> child_1 = <span class="hljs-keyword">new</span> Child();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_1.name); <span class="hljs-comment">// Parent</span></span><br><span class="line">child_1.getNumbers(); <span class="hljs-comment">// [1, 2]</span></span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote danger"><p>这种继承方式很明显的缺点是:</p>
+<ol>
+<li>对于引用类型的属性，它会被所有实例共享。</li>
+<li>无法向父类传递参数</li>
+</ol>
+</blockquote>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">child_1.numbers.push(<span class="hljs-number">3</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> child_2 = <span class="hljs-keyword">new</span> Child();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_2.numbers); <span class="hljs-comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h2 id="借用构造函数"><a href="#借用构造函数" class="headerlink" title="借用构造函数"></a>借用构造函数</h2><h3 id="🌰-1"><a href="#🌰-1" class="headerlink" title="🌰"></a>🌰</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params">numbers</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">this</span>.numbers = numbers;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params">numbers</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// 调用父类构造函数</span></span><br><span class="line">  Parent.call(<span class="hljs-keyword">this</span>, numbers);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_1 = <span class="hljs-keyword">new</span> Child([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_1.numbers); <span class="hljs-comment">//[3, 4]</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_2 = <span class="hljs-keyword">new</span> Child([<span class="hljs-number">5</span>]);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_2.numbers); <span class="hljs-comment">// [5]</span></span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote success"><p>相较与原型式继承，借用构造函数的方式可以：</p>
+<ol>
+<li>传递参数</li>
+<li>引用类型属性不会被实例共享</li>
+</ol>
+</blockquote>
+<p>但….</p>
+<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 父类原型属性中的方法，子类无法访问</span></span><br><span class="line">Parent.prototype.getNumbers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.numbers);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_1 = <span class="hljs-keyword">new</span> Child([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);</span><br><span class="line">child_1.getNumbers(); <span class="hljs-comment">// TypeError: child_1.getNumbers is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_2 = <span class="hljs-keyword">new</span> Child([<span class="hljs-number">5</span>]);</span><br><span class="line">child_2.getNumbers(); <span class="hljs-comment">// TypeError: child_1.getNumbers is not a function</span></span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote danger"><p>很明显的缺点是:</p>
+<ol>
+<li>父类的原型方法子类是无法访问到的，必须在构造函数中定义。因此，对于方法定义来说，每次创建实例都重新创建一遍方法。</li>
+</ol>
+</blockquote>
+<h2 id="组合继承（原型加借用构造函数的方式）"><a href="#组合继承（原型加借用构造函数的方式）" class="headerlink" title="组合继承（原型加借用构造函数的方式）"></a>组合继承（原型加借用构造函数的方式）</h2><h3 id="🌰-2"><a href="#🌰-2" class="headerlink" title="🌰"></a>🌰</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params">name</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">  <span class="hljs-keyword">this</span>.colors = [<span class="hljs-string">"red"</span>, <span class="hljs-string">"blue"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getColors = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.colors);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// 借用父类构造函数</span></span><br><span class="line">  Parent.call(<span class="hljs-keyword">this</span>, name);</span><br><span class="line">  <span class="hljs-keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">// 重写原型对象（原型链继承）</span></span><br><span class="line">Child.prototype = <span class="hljs-keyword">new</span> Parent();</span><br><span class="line">Child.prototype.constructor = Child;</span><br><span class="line"></span><br><span class="line">Child.prototype.getAge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_1 = <span class="hljs-keyword">new</span> Child(<span class="hljs-string">"Ben"</span>, <span class="hljs-number">12</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_1.name); <span class="hljs-comment">// Ben</span></span><br><span class="line">child_1.getAge(); <span class="hljs-comment">// 12</span></span><br><span class="line">child_1.colors.push(<span class="hljs-string">"gray"</span>); </span><br><span class="line">child_2.getColors(); <span class="hljs-comment">// ["red","blue","gray"]</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_2 = <span class="hljs-keyword">new</span> Child(<span class="hljs-string">"Obi"</span>, <span class="hljs-number">20</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_2.name); <span class="hljs-comment">// Obi</span></span><br><span class="line">child_2.getAge(); <span class="hljs-comment">// 20</span></span><br><span class="line">child_2.getColors(); <span class="hljs-comment">// ["red","blue"]</span></span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote success"><p>组合继承很好的避开了原型链继承与借用构造函数继承的缺点，避免了引用类型属性共享又可以对方法进行复用。</p>
+</blockquote>
+<blockquote class="colorquote danger"><p>但是…还有一个缺陷就是：<br>在创建子类的实例时，会调用2次父类的的构造函数，从而子类的prototype上会有不必要多余的属性。</p>
+<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// 借用父类构造函数</span></span><br><span class="line">  Parent.call(<span class="hljs-keyword">this</span>, name);</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = <span class="hljs-keyword">new</span> Parent();</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="原型继承"><a href="#原型继承" class="headerlink" title="原型继承"></a>原型继承</h2><blockquote>
+<p>借助原型可以基于已有的的对象创建新对象，同时还不必因此创建自定义类型。—— 道格拉斯·克罗克福德</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  F.prototype = o;</span><br><span class="line">  retrun <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的方法<code>object()</code>，也是ES5中<code>object.create()</code>的模拟实现。</p>
+<blockquote>
+<p>在<code>object()</code>函数内部，创建一个临时构造函数，将传入的对象作为这个构造函数的原型，然后返回这个临时类型的一个新的实例。</p>
+</blockquote>
+<h3 id="🌰-3"><a href="#🌰-3" class="headerlink" title="🌰"></a>🌰</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> Parent = &#123;</span><br><span class="line">  name: <span class="hljs-string">"Parent"</span>,</span><br><span class="line">  colors: [<span class="hljs-string">"red"</span>, <span class="hljs-string">"green"</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-keyword">const</span> child_1 = object(Parent);</span><br><span class="line">child_1.name = <span class="hljs-string">"child_1"</span>;</span><br><span class="line">child_1.colors.push(<span class="hljs-string">"blue"</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_1.name); <span class="hljs-comment">// child_1</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_2 = object(Parent);</span><br><span class="line">child_2.name = <span class="hljs-string">"child_2"</span>;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_2.name); <span class="hljs-comment">// child_2</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_2.colors); <span class="hljs-comment">//["red", "green", "blue"]</span></span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote danger"><p>这种方式与原型链继承一样，对于引用类型的属性会被所以实例共享。</p>
+</blockquote>
+<h2 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h2><p>寄生式继承依赖原型继承模式，类似与工厂模式，仅是在函数内部对对象进行增强，最后返回对象。</p>
+<h3 id="🌰-4"><a href="#🌰-4" class="headerlink" title="🌰"></a>🌰</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span>(<span class="hljs-params">o</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">let</span> clone = <span class="hljs-built_in">Object</span>.create(o);</span><br><span class="line">  clone.sayHi = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hi!"</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="hljs-keyword">return</span> clone;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> Parent = &#123;</span><br><span class="line">  name: <span class="hljs-string">"Parent"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child = factory(Parent);</span><br><span class="line">child.sayHi(); <span class="hljs-comment">// Hi!</span></span><br></pre></td></tr></table></figure>
+<h2 id="组合寄生式继承"><a href="#组合寄生式继承" class="headerlink" title="组合寄生式继承"></a>组合寄生式继承</h2><h3 id="🌰-5"><a href="#🌰-5" class="headerlink" title="🌰"></a>🌰</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params">name</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">  <span class="hljs-keyword">this</span>.colors = [<span class="hljs-string">"red"</span>, <span class="hljs-string">"blue"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getColors = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.colors);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// 借用父类构造函数</span></span><br><span class="line">  Parent.call(<span class="hljs-keyword">this</span>, name);</span><br><span class="line">  <span class="hljs-keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">// 重写子类原型</span></span><br><span class="line"><span class="hljs-comment">// 获得父类原型的副本</span></span><br><span class="line">Child.prototype = <span class="hljs-built_in">Object</span>.create(Parent.prototype);</span><br><span class="line">Child.prototype.constructor = Child; <span class="hljs-comment">// 上一行代码重写了子类的原型，因此要重新指定子类的构造函数</span></span><br><span class="line"></span><br><span class="line">Child.prototype.getAge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_1 = <span class="hljs-keyword">new</span> Child(<span class="hljs-string">"Ben"</span>, <span class="hljs-number">12</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_1.name); <span class="hljs-comment">// Ben</span></span><br><span class="line">child_1.getAge(); <span class="hljs-comment">// 12</span></span><br><span class="line">child_1.colors.push(<span class="hljs-string">"gray"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> child_2 = <span class="hljs-keyword">new</span> Child(<span class="hljs-string">"Obi"</span>, <span class="hljs-number">20</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(child_2.name); <span class="hljs-comment">// Obi</span></span><br><span class="line">child_2.getAge(); <span class="hljs-comment">// 20</span></span><br><span class="line">child_2.getColors(); <span class="hljs-comment">// ["red", "blue"]</span></span><br></pre></td></tr></table></figure>
+<blockquote class="colorquote info"><p>组合式继承有一个缺点就是会调用父类构造函数2次，寄生组合式继承避免了这一点，同时保持原型链不变，能正常instanceof、isPrototypeOf。<br>因此是最理想的继承方式。</p>
+</blockquote>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p><img src="https://i.loli.net/2019/08/15/2NOJ5hFiM8QwXSd.png" alt="组合继承"></p>
+<center>组合继承</center>
+
+<blockquote>
+<p>可以看到在子类的原型<code>prototype</code>上，多了<code>colors</code>,<code>name</code>属性</p>
+</blockquote>
+<p><img src="https://i.loli.net/2019/08/15/GkF6Zam8eLT2Khj.png" alt="寄生组合继承"></p>
+<center>寄生组合继承</center>
+
+<blockquote class="colorquote info"><ol>
+<li><code>colors</code>、<code>name</code>，是父类的实例属性，在重写子类原型属性<code>prototype</code>时（<code>Child.prototype = new Parent()</code>），子类的原型属性便获得了父类属性的副本<code>colors</code>,<code>name</code>。</li>
+<li><code>const child = new Child()</code>：调用子类<code>Child()</code>构造函数时又一次调用父类的构造函数(<code>Parent.call(this, name)</code>)。子类实例<code>child_1</code>因此获得父类的实例属性<code>colors</code>,<code>name</code>，同时也屏蔽了子类原型属性<code>prototype</code>中的<code>colors</code>,<code>name</code>。</li>
+</ol>
+<p>两次调用父类构造函数导致了子类<code>Child()</code>的原型属性prototype和子类实例<code>child_1</code>中都获得了父类的实例属性<code>colors</code>,<code>name</code>。</p>
+<p>寄生组合式继承的基本思路就是：通过借用构造函数来继承属性，通过原型链来继承方法。</p>
+</blockquote>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><strong>Javascript主要通过原型链实现继承。</strong></p>
+<blockquote>
+<p>原型链的构建是通过将一个类型的实例赋予另一个构造函数的原型属性<code>prototype</code>而实现的。通过这样的方式，子类就能访问父类的所有属性及方法。<br>原型链的方式存在一个缺点就是所有实例共享所有属性及方法。因此需要借用构造函数的方式——在子类的构造函数中调用父类的构造函数，这样子类实例都会有单独的属性和方法。</p>
+</blockquote>
+<ol>
+<li>原型链继承：通过重写子类原型的方式获得父类属性及方法及指向父类构造函数的指针。<ul>
+<li>缺点<ol>
+<li>引用类型所有实例共享。</li>
+<li>无法传递参数。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>构造函数继承：通过子类的构造函数中调用父类构造函数从而获父类属性。<ul>
+<li>优点<ol>
+<li>每个子类实例都有一份父类属性的拷贝，解决引用类型属性共享的问题。</li>
+</ol>
+</li>
+<li>缺点<ol>
+<li>子类实例无法访问父类prototype中定义的方法，因此方法必须定义在构造函数中，每次创建实例都要重新创建一次方法。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>组合继承（经典继承）：<ul>
+<li>优点<ol>
+<li>避开了原型链继承及构造函数继承的缺点。</li>
+</ol>
+</li>
+<li>缺点<ol>
+<li>两次调用父类的构造函数。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>原型式继承：无需定义构造函数的情况下实现继承。其本质是对目标对象的浅复制，从而得到对象的副本。<ul>
+<li>缺点<ol>
+<li>与原型链式继承一样，所有实例共享引用类型属性。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>寄生式继承：类似与工厂模式，结合原型式继承的方式，对目标对象进行浅复制获得新对象，并对新对象进行增强加工，最后返回这个新对象<ul>
+<li>缺点<ol>
+<li>每次创建实例就是一次对象增强加工，因此都会创建一遍对象的方法。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>寄生组合式继承: 结合寄生继承及组合式继承的优点，是继承最有效的方式。</li>
+</ol>
+
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2019/08/11/The-Boring-Project——驾校管理系统/">The Boring Project——驾校管理系统</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019 mzw&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asensiki">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Que voulez-vous chercher ?">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Catégories',
+                TAGS: 'Tags',
+                UNTITLED: '(Sans Titre)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+</body>
+</html>
