@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
 <title>拾遗JavaScript——var-let-const - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,24 +12,26 @@
 
 
 
+<meta name="keywords" content="blog">
+
 
 
     <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗JavaScript——var-let-const">
-<meta property="og:url" content="http://asensiki.github.io/2019/03/27/拾遗JavaScript——var-let-const/index.html">
+<meta property="og:url" content="http://subdriving.club/2019/03/27/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94var-let-const/index.html">
 <meta property="og:site_name" content="Asensiki">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
-<meta property="og:updated_time" content="2019-08-02T08:32:08.977Z">
+<meta property="article:published_time" content="2019-03-27T14:58:32.000Z">
+<meta property="article:modified_time" content="2019-03-27T14:58:32.000Z">
+<meta property="article:author" content="mzw">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗JavaScript——var-let-const">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
 
 
 
 
-
-<link rel="icon" href="./source/images/logo.png">
 
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
@@ -42,7 +44,9 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
+
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -61,7 +65,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -69,7 +73,9 @@
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/images/logo.png" alt height="28">
+                    
+                    <img src="/./images/mzw.png" alt="" height="28">
+                    
                 
             </a>
             <div class="navbar-burger">
@@ -81,59 +87,26 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/archives">Archives</a>
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/categories">categories</a>
+            <a class="navbar-item "
+               href="/categories">categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">tags</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#变量的声明方式">1&nbsp;&nbsp;<b>变量的声明方式</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#var">1.1&nbsp;&nbsp;var</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#let">1.2&nbsp;&nbsp;let</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#const">1.3&nbsp;&nbsp;const</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#变量提升">2&nbsp;&nbsp;<b>变量提升</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#暂时性死区">3&nbsp;&nbsp;<b>暂时性死区</b></a>
-                    
-                </div>
-            </div>
             
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                 
                 <i class="fab fa-github"></i>
                 
@@ -154,7 +127,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-03-27T14:58:32.000Z" itemprop="datePublished">3月 27 2019</time>
+            
+                <time datetime="2019-03-27T14:58:32.000Z" itemprop="datePublished">3月 27 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -166,29 +141,29 @@
         <span class="column is-narrow">
             
             
-            2 分钟 read (About 254 words)
+            2 分钟 读完 (约 254 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
+        <html><head></head><body><p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
 <a id="more"></a>
-<h2 id="变量的声明方式"><a href="#变量的声明方式" class="headerlink" title="变量的声明方式"></a>变量的声明方式</h2><h3 id="var"><a href="#var" class="headerlink" title="var"></a>var</h3><p>声明局部变量和全局变量。</p>
-<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>声明一个块级作用域的局部变量。</p>
-<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>声明一个块级作用域的只读常量(需要初始值)。</p>
-<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h2 id="&#x53D8;&#x91CF;&#x7684;&#x58F0;&#x660E;&#x65B9;&#x5F0F;"><a href="#&#x53D8;&#x91CF;&#x7684;&#x58F0;&#x660E;&#x65B9;&#x5F0F;" class="headerlink" title="&#x53D8;&#x91CF;&#x7684;&#x58F0;&#x660E;&#x65B9;&#x5F0F;"></a>&#x53D8;&#x91CF;&#x7684;&#x58F0;&#x660E;&#x65B9;&#x5F0F;</h2><h3 id="var"><a href="#var" class="headerlink" title="var"></a>var</h3><p>&#x58F0;&#x660E;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x3002;</p>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5757;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x3002;</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5757;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;&#x7684;&#x53EA;&#x8BFB;&#x5E38;&#x91CF;(&#x9700;&#x8981;&#x521D;&#x59CB;&#x503C;)&#x3002;</p>
+<h2 id="&#x53D8;&#x91CF;&#x63D0;&#x5347;"><a href="#&#x53D8;&#x91CF;&#x63D0;&#x5347;" class="headerlink" title="&#x53D8;&#x91CF;&#x63D0;&#x5347;"></a>&#x53D8;&#x91CF;&#x63D0;&#x5347;</h2><figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(a);</span><br><span class="line"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>; <span class="hljs-comment">// undefined</span></span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
-<p>实际上上部分的代码可以理解为:</p>
+<p>&#x5B9E;&#x9645;&#x4E0A;&#x4E0A;&#x90E8;&#x5206;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;:</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>这就是变量提升。</p>
-<div class="tip"><br>对于函数来说，只有函数声明会被提升到顶部，而函数表达式不会被提升。<br></div>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(a);</span><br><span class="line">a = <span class="hljs-number">1</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x53D8;&#x91CF;&#x63D0;&#x5347;&#x3002;</p>
+<div class="tip"><br>&#x5BF9;&#x4E8E;&#x51FD;&#x6570;&#x6765;&#x8BF4;&#xFF0C;&#x53EA;&#x6709;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4F1A;&#x88AB;&#x63D0;&#x5347;&#x5230;&#x9876;&#x90E8;&#xFF0C;&#x800C;&#x51FD;&#x6570;&#x8868;&#x8FBE;&#x5F0F;&#x4E0D;&#x4F1A;&#x88AB;&#x63D0;&#x5347;&#x3002;<br></div>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">baz(); <span class="comment">// baz is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> baz = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"bar2"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h2><p>let（const）将不会提升变量到代码块的顶部。因此，在变量声明之前引用这个变量，将抛出引用错误（ReferenceError）。这个变量将从代码块一开始的时候就处在一个“暂时性死区”，直到这个变量被声明为止。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>; <span class="comment">//a is not defined</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">baz(); <span class="hljs-comment">// baz is not a function</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> baz = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;bar2&quot;</span>);</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x6682;&#x65F6;&#x6027;&#x6B7B;&#x533A;"><a href="#&#x6682;&#x65F6;&#x6027;&#x6B7B;&#x533A;" class="headerlink" title="&#x6682;&#x65F6;&#x6027;&#x6B7B;&#x533A;"></a>&#x6682;&#x65F6;&#x6027;&#x6B7B;&#x533A;</h2><p>let&#xFF08;const&#xFF09;&#x5C06;&#x4E0D;&#x4F1A;&#x63D0;&#x5347;&#x53D8;&#x91CF;&#x5230;&#x4EE3;&#x7801;&#x5757;&#x7684;&#x9876;&#x90E8;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x53D8;&#x91CF;&#x58F0;&#x660E;&#x4E4B;&#x524D;&#x5F15;&#x7528;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x5C06;&#x629B;&#x51FA;&#x5F15;&#x7528;&#x9519;&#x8BEF;&#xFF08;ReferenceError&#xFF09;&#x3002;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x5C06;&#x4ECE;&#x4EE3;&#x7801;&#x5757;&#x4E00;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x5904;&#x5728;&#x4E00;&#x4E2A;&#x201C;&#x6682;&#x65F6;&#x6027;&#x6B7B;&#x533A;&#x201D;&#xFF0C;&#x76F4;&#x5230;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x88AB;&#x58F0;&#x660E;&#x4E3A;&#x6B62;&#x3002;</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(a);</span><br><span class="line"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>; <span class="hljs-comment">//a is not defined</span></span><br></pre></td></tr></tbody></table></figure>
+</body></html>
     
     </div>
     
@@ -196,12 +171,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/04/09/拾遗JavaScript——Event-Loop/">拾遗JavaScript——Event Loop</a>
+            <a href="/2019/04/09/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94Event-Loop/">拾遗JavaScript——Event Loop</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/03/22/拾遗JavaScript——this/">拾遗JavaScript——this</a>
+            <a href="/2019/03/22/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94this/">拾遗JavaScript——this</a>
             
         </span>
     </div>
@@ -217,8 +192,9 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2019 mzw&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                &copy; 2020 mzw&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -227,7 +203,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asensiki">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                     
                     GitHub
                     
@@ -246,7 +222,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -382,14 +358,16 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -401,18 +379,20 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

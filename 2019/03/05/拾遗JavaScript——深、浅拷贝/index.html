@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
 <title>拾遗JavaScript——深、浅拷贝 - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,24 +12,26 @@
 
 
 
+<meta name="keywords" content="blog">
+
 
 
     <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗JavaScript——深、浅拷贝">
-<meta property="og:url" content="http://asensiki.github.io/2019/03/05/拾遗JavaScript——深、浅拷贝/index.html">
+<meta property="og:url" content="http://subdriving.club/2019/03/05/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94%E6%B7%B1%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
 <meta property="og:site_name" content="Asensiki">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
-<meta property="og:updated_time" content="2019-08-02T08:31:34.495Z">
+<meta property="article:published_time" content="2019-03-05T15:20:16.000Z">
+<meta property="article:modified_time" content="2019-03-05T15:20:16.000Z">
+<meta property="article:author" content="mzw">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗JavaScript——深、浅拷贝">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
 
 
 
 
-
-<link rel="icon" href="./source/images/logo.png">
 
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
@@ -42,7 +44,9 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
+
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -61,7 +65,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -69,7 +73,9 @@
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/images/logo.png" alt height="28">
+                    
+                    <img src="/./images/mzw.png" alt="" height="28">
+                    
                 
             </a>
             <div class="navbar-burger">
@@ -81,71 +87,26 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/archives">Archives</a>
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/categories">categories</a>
+            <a class="navbar-item "
+               href="/categories">categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">tags</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#数据类型">1&nbsp;&nbsp;<b>数据类型</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#浅拷贝">1.1&nbsp;&nbsp;浅拷贝</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#🌰：-对于对象来说，可以通过Object-assign-、-来实现浅拷贝">1.1.1&nbsp;&nbsp;🌰： 对于对象来说，可以通过Object.assign()、...来实现浅拷贝</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#🌰：对于数组，可以通过concat-、slice-来实现浅拷贝">1.1.2&nbsp;&nbsp;🌰：对于数组，可以通过concat()、slice() 来实现浅拷贝</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#当面对复杂一点的对象或者数组，使用-Object-assign-Array-slice-会怎么样？例如">1.1.3&nbsp;&nbsp;当面对复杂一点的对象或者数组，使用 Object.assign(),Array.slice() 会怎么样？例如:</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#深拷贝">2&nbsp;&nbsp;<b>深拷贝</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#实现简易的浅拷贝、深拷贝">3&nbsp;&nbsp;<b>实现简易的浅拷贝、深拷贝</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#浅拷贝-1">3.1.1&nbsp;&nbsp;浅拷贝</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#深拷贝-1">3.1.2&nbsp;&nbsp;深拷贝</a>
-                    
-                </div>
-            </div>
             
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                 
                 <i class="fab fa-github"></i>
                 
@@ -166,7 +127,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-03-05T15:20:16.000Z" itemprop="datePublished">3月 5 2019</time>
+            
+                <time datetime="2019-03-05T15:20:16.000Z" itemprop="datePublished">3月 5 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -178,64 +141,64 @@
         <span class="column is-narrow">
             
             
-            8 分钟 read (About 1126 words)
+            8 分钟 读完 (约 1126 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
+        <html><head></head><body><p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
 <a id="more"></a>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>JavaScript 中变量的数据类型分两种：</p>
+<h2 id="&#x6570;&#x636E;&#x7C7B;&#x578B;"><a href="#&#x6570;&#x636E;&#x7C7B;&#x578B;" class="headerlink" title="&#x6570;&#x636E;&#x7C7B;&#x578B;"></a>&#x6570;&#x636E;&#x7C7B;&#x578B;</h2><p>JavaScript &#x4E2D;&#x53D8;&#x91CF;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5206;&#x4E24;&#x79CD;&#xFF1A;</p>
 <ul>
-<li>基本类型 （存储与栈内存中，值存储）</li>
-<li>引用类型 （存储堆内存中，通过指针去寻找所指向的内存空间）</li>
+<li>&#x57FA;&#x672C;&#x7C7B;&#x578B; &#xFF08;&#x5B58;&#x50A8;&#x4E0E;&#x6808;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x503C;&#x5B58;&#x50A8;&#xFF09;</li>
+<li>&#x5F15;&#x7528;&#x7C7B;&#x578B; &#xFF08;&#x5B58;&#x50A8;&#x5806;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;&#x6307;&#x9488;&#x53BB;&#x5BFB;&#x627E;&#x6240;&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF09;</li>
 </ul>
-<p>对于值类型的复制操作是直接堆变量的值进行拷贝；<br>对于引用类型的复制操作是对存储变量的指针进行拷贝，指向同一内存空间，修改其中一个会影响另一方。</p>
+<p>&#x5BF9;&#x4E8E;&#x503C;&#x7C7B;&#x578B;&#x7684;&#x590D;&#x5236;&#x64CD;&#x4F5C;&#x662F;&#x76F4;&#x63A5;&#x5806;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x8FDB;&#x884C;&#x62F7;&#x8D1D;&#xFF1B;<br>&#x5BF9;&#x4E8E;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x7684;&#x590D;&#x5236;&#x64CD;&#x4F5C;&#x662F;&#x5BF9;&#x5B58;&#x50A8;&#x53D8;&#x91CF;&#x7684;&#x6307;&#x9488;&#x8FDB;&#x884C;&#x62F7;&#x8D1D;&#xFF0C;&#x6307;&#x5411;&#x540C;&#x4E00;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x4FEE;&#x6539;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4F1A;&#x5F71;&#x54CD;&#x53E6;&#x4E00;&#x65B9;&#x3002;</p>
 <blockquote>
-<p>深浅拷贝只针对于 Array、Object 这样复杂的对象</p>
+<p>&#x6DF1;&#x6D45;&#x62F7;&#x8D1D;&#x53EA;&#x9488;&#x5BF9;&#x4E8E; Array&#x3001;Object &#x8FD9;&#x6837;&#x590D;&#x6742;&#x7684;&#x5BF9;&#x8C61;</p>
 </blockquote>
-<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>只拷贝基本类型的数据，对于引用的类型数据，复制后也是会发生引用，这种拷贝就叫做浅拷贝</p>
-<h4 id="🌰：-对于对象来说，可以通过Object-assign-、-来实现浅拷贝"><a href="#🌰：-对于对象来说，可以通过Object-assign-、-来实现浅拷贝" class="headerlink" title="🌰： 对于对象来说，可以通过Object.assign()、...来实现浅拷贝"></a>🌰： 对于对象来说，可以通过<code>Object.assign()</code>、<code>...</code>来实现浅拷贝</h4><h5 id="1、Object-assign"><a href="#1、Object-assign" class="headerlink" title="1、Object.assign()"></a>1、Object.assign()</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"ken"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">Object</span>.assign(&#123;&#125;, obj);</span><br><span class="line">obj.name = <span class="string">"obi"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">// name:obi</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj.name); <span class="comment">// name: ken</span></span><br></pre></td></tr></table></figure>
-<h5 id="2、-展开运算符"><a href="#2、-展开运算符" class="headerlink" title="2、...展开运算符"></a>2、<code>...</code>展开运算符</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  name: <span class="string">"ken"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> newObj = &#123;</span><br><span class="line">  ...obj</span><br><span class="line">&#125;;</span><br><span class="line">obj.name = <span class="string">"obi"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">// name:obi</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj.name); <span class="comment">// name: ken</span></span><br></pre></td></tr></table></figure>
-<h4 id="🌰：对于数组，可以通过concat-、slice-来实现浅拷贝"><a href="#🌰：对于数组，可以通过concat-、slice-来实现浅拷贝" class="headerlink" title="🌰：对于数组，可以通过concat()、slice() 来实现浅拷贝"></a>🌰：对于数组，可以通过<code>concat()</code>、<code>slice()</code> 来实现浅拷贝</h4><h5 id="1、concat"><a href="#1、concat" class="headerlink" title="1、concat()"></a>1、concat()</h5><p>concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。<br>concat 方法不会改变 this 或任何作为参数提供的数组，而是返回一个浅拷贝，它包含与原始数组相结合的相同元素的副本。 原始数组的元素将复制到新数组中。</p>
+<h3 id="&#x6D45;&#x62F7;&#x8D1D;"><a href="#&#x6D45;&#x62F7;&#x8D1D;" class="headerlink" title="&#x6D45;&#x62F7;&#x8D1D;"></a>&#x6D45;&#x62F7;&#x8D1D;</h3><p>&#x53EA;&#x62F7;&#x8D1D;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5BF9;&#x4E8E;&#x5F15;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x6570;&#x636E;&#xFF0C;&#x590D;&#x5236;&#x540E;&#x4E5F;&#x662F;&#x4F1A;&#x53D1;&#x751F;&#x5F15;&#x7528;&#xFF0C;&#x8FD9;&#x79CD;&#x62F7;&#x8D1D;&#x5C31;&#x53EB;&#x505A;&#x6D45;&#x62F7;&#x8D1D;</p>
+<h4 id="&#x1F330;&#xFF1A;-&#x5BF9;&#x4E8E;&#x5BF9;&#x8C61;&#x6765;&#x8BF4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Object-assign-&#x3001;-&#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;"><a href="#&#x1F330;&#xFF1A;-&#x5BF9;&#x4E8E;&#x5BF9;&#x8C61;&#x6765;&#x8BF4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Object-assign-&#x3001;-&#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;" class="headerlink" title="&#x1F330;&#xFF1A; &#x5BF9;&#x4E8E;&#x5BF9;&#x8C61;&#x6765;&#x8BF4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Object.assign()&#x3001;...&#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;"></a>&#x1F330;&#xFF1A; &#x5BF9;&#x4E8E;&#x5BF9;&#x8C61;&#x6765;&#x8BF4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>Object.assign()</code>&#x3001;<code>...</code>&#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;</h4><h5 id="1&#x3001;Object-assign"><a href="#1&#x3001;Object-assign" class="headerlink" title="1&#x3001;Object.assign()"></a>1&#x3001;Object.assign()</h5><figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  name: <span class="hljs-string">&quot;ken&quot;</span></span><br><span class="line">};</span><br><span class="line"><span class="hljs-keyword">let</span> newObj = <span class="hljs-built_in">Object</span>.assign({}, obj);</span><br><span class="line">obj.name = <span class="hljs-string">&quot;obi&quot;</span>;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(obj.name); <span class="hljs-comment">// name:obi</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj.name); <span class="hljs-comment">// name: ken</span></span><br></pre></td></tr></tbody></table></figure>
+<h5 id="2&#x3001;-&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;"><a href="#2&#x3001;-&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;" class="headerlink" title="2&#x3001;...&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;"></a>2&#x3001;<code>...</code>&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;</h5><figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  name: <span class="hljs-string">&quot;ken&quot;</span></span><br><span class="line">};</span><br><span class="line"><span class="hljs-keyword">let</span> newObj = {</span><br><span class="line">  ...obj</span><br><span class="line">};</span><br><span class="line">obj.name = <span class="hljs-string">&quot;obi&quot;</span>;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(obj.name); <span class="hljs-comment">// name:obi</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj.name); <span class="hljs-comment">// name: ken</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="&#x1F330;&#xFF1A;&#x5BF9;&#x4E8E;&#x6570;&#x7EC4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;concat-&#x3001;slice-&#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;"><a href="#&#x1F330;&#xFF1A;&#x5BF9;&#x4E8E;&#x6570;&#x7EC4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;concat-&#x3001;slice-&#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;" class="headerlink" title="&#x1F330;&#xFF1A;&#x5BF9;&#x4E8E;&#x6570;&#x7EC4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;concat()&#x3001;slice() &#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;"></a>&#x1F330;&#xFF1A;&#x5BF9;&#x4E8E;&#x6570;&#x7EC4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>concat()</code>&#x3001;<code>slice()</code> &#x6765;&#x5B9E;&#x73B0;&#x6D45;&#x62F7;&#x8D1D;</h4><h5 id="1&#x3001;concat"><a href="#1&#x3001;concat" class="headerlink" title="1&#x3001;concat()"></a>1&#x3001;concat()</h5><p>concat() &#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x6570;&#x7EC4;&#x3002;&#x6B64;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x66F4;&#x6539;&#x73B0;&#x6709;&#x6570;&#x7EC4;&#xFF0C;&#x800C;&#x662F;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x6570;&#x7EC4;&#x3002;<br>concat &#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x6539;&#x53D8; this &#x6216;&#x4EFB;&#x4F55;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x63D0;&#x4F9B;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x800C;&#x662F;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6D45;&#x62F7;&#x8D1D;&#xFF0C;&#x5B83;&#x5305;&#x542B;&#x4E0E;&#x539F;&#x59CB;&#x6570;&#x7EC4;&#x76F8;&#x7ED3;&#x5408;&#x7684;&#x76F8;&#x540C;&#x5143;&#x7D20;&#x7684;&#x526F;&#x672C;&#x3002; &#x539F;&#x59CB;&#x6570;&#x7EC4;&#x7684;&#x5143;&#x7D20;&#x5C06;&#x590D;&#x5236;&#x5230;&#x65B0;&#x6570;&#x7EC4;&#x4E2D;&#x3002;</p>
 <blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/concat</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/concat">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/concat</a></p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> newArr = arr.concat();</span><br><span class="line">arr.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[1,2,3,4]</span></span><br><span class="line"><span class="built_in">console</span>.log(newArr); <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
-<h5 id="2、slice"><a href="#2、slice" class="headerlink" title="2、slice()"></a>2、slice()</h5><p>slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end（不包括 end）决定的原数组的浅拷贝。原始数组不会被改变。</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> newArr = arr.concat();</span><br><span class="line">arr.push(<span class="hljs-number">4</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">//[1,2,3,4]</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newArr); <span class="hljs-comment">//[1,2,3]</span></span><br></pre></td></tr></tbody></table></figure>
+<h5 id="2&#x3001;slice"><a href="#2&#x3001;slice" class="headerlink" title="2&#x3001;slice()"></a>2&#x3001;slice()</h5><p>slice() &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6570;&#x7EC4;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E00;&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x7531; begin &#x548C; end&#xFF08;&#x4E0D;&#x5305;&#x62EC; end&#xFF09;&#x51B3;&#x5B9A;&#x7684;&#x539F;&#x6570;&#x7EC4;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#x3002;&#x539F;&#x59CB;&#x6570;&#x7EC4;&#x4E0D;&#x4F1A;&#x88AB;&#x6539;&#x53D8;&#x3002;</p>
 <blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice</a></p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> newArr = arr.slice();</span><br><span class="line">arr.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[1,2,3,4]</span></span><br><span class="line"><span class="built_in">console</span>.log(newArr); <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
-<h4 id="当面对复杂一点的对象或者数组，使用-Object-assign-Array-slice-会怎么样？例如"><a href="#当面对复杂一点的对象或者数组，使用-Object-assign-Array-slice-会怎么样？例如" class="headerlink" title="当面对复杂一点的对象或者数组，使用 Object.assign(),Array.slice() 会怎么样？例如:"></a>当面对复杂一点的对象或者数组，使用 <code>Object.assign()</code>,<code>Array.slice()</code> 会怎么样？例如:</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span>,</span><br><span class="line">  c: &#123;</span><br><span class="line">    d: <span class="number">1</span>,</span><br><span class="line">    e: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">Object</span>.assign(&#123;&#125;, obj);</span><br><span class="line">obj.a = <span class="number">2</span>;</span><br><span class="line">newObj.c.d = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123;a:2,b:2,c:&#123;d:2,e:2&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj); <span class="comment">// &#123;a:1,b:2,c:&#123;d:2,e:2&#125;&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">1</span>, <span class="number">2</span>], <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> newArr = arr.concat();</span><br><span class="line"></span><br><span class="line">arr.push(<span class="number">4</span>);</span><br><span class="line">arr[<span class="number">2</span>].push(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[1,2,[1,2,3],3,4]</span></span><br><span class="line"><span class="built_in">console</span>.log(newArr); <span class="comment">//[1,2,[1,2,3],3]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> newArr = arr.slice();</span><br><span class="line">arr.push(<span class="hljs-number">4</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">//[1,2,3,4]</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newArr); <span class="hljs-comment">//[1,2,3]</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="&#x5F53;&#x9762;&#x5BF9;&#x590D;&#x6742;&#x4E00;&#x70B9;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x6570;&#x7EC4;&#xFF0C;&#x4F7F;&#x7528;-Object-assign-Array-slice-&#x4F1A;&#x600E;&#x4E48;&#x6837;&#xFF1F;&#x4F8B;&#x5982;"><a href="#&#x5F53;&#x9762;&#x5BF9;&#x590D;&#x6742;&#x4E00;&#x70B9;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x6570;&#x7EC4;&#xFF0C;&#x4F7F;&#x7528;-Object-assign-Array-slice-&#x4F1A;&#x600E;&#x4E48;&#x6837;&#xFF1F;&#x4F8B;&#x5982;" class="headerlink" title="&#x5F53;&#x9762;&#x5BF9;&#x590D;&#x6742;&#x4E00;&#x70B9;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x6570;&#x7EC4;&#xFF0C;&#x4F7F;&#x7528; Object.assign(),Array.slice() &#x4F1A;&#x600E;&#x4E48;&#x6837;&#xFF1F;&#x4F8B;&#x5982;:"></a>&#x5F53;&#x9762;&#x5BF9;&#x590D;&#x6742;&#x4E00;&#x70B9;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x6570;&#x7EC4;&#xFF0C;&#x4F7F;&#x7528; <code>Object.assign()</code>,<code>Array.slice()</code> &#x4F1A;&#x600E;&#x4E48;&#x6837;&#xFF1F;&#x4F8B;&#x5982;:</h4><figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  a: <span class="hljs-number">1</span>,</span><br><span class="line">  b: <span class="hljs-number">2</span>,</span><br><span class="line">  c: {</span><br><span class="line">    d: <span class="hljs-number">1</span>,</span><br><span class="line">    e: <span class="hljs-number">2</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> newObj = <span class="hljs-built_in">Object</span>.assign({}, obj);</span><br><span class="line">obj.a = <span class="hljs-number">2</span>;</span><br><span class="line">newObj.c.d = <span class="hljs-number">2</span>;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">// {a:2,b:2,c:{d:2,e:2}}</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj); <span class="hljs-comment">// {a:1,b:2,c:{d:2,e:2}}</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], <span class="hljs-number">3</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> newArr = arr.concat();</span><br><span class="line"></span><br><span class="line">arr.push(<span class="hljs-number">4</span>);</span><br><span class="line">arr[<span class="hljs-number">2</span>].push(<span class="hljs-number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">//[1,2,[1,2,3],3,4]</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newArr); <span class="hljs-comment">//[1,2,[1,2,3],3]</span></span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
-<p>代码里修改了<code>obj.a</code>的值，并没对<code>newObj</code>造成影响，而修改了<code>newObj.c.d</code>的值，<code>obj.c.d</code>的值也随着改变。这是因为<code>Object.assign()</code>是浅拷贝，只拷贝了一层，对于<code>obj.c</code>是一个对象，所以<code>newObj.c</code>存储的是指向<code>obj.c</code>所指向的指针地址。同理<code>...</code>展开运算符、<code>Array.concat()/Array.slice()</code></p>
+<p>&#x4EE3;&#x7801;&#x91CC;&#x4FEE;&#x6539;&#x4E86;<code>obj.a</code>&#x7684;&#x503C;&#xFF0C;&#x5E76;&#x6CA1;&#x5BF9;<code>newObj</code>&#x9020;&#x6210;&#x5F71;&#x54CD;&#xFF0C;&#x800C;&#x4FEE;&#x6539;&#x4E86;<code>newObj.c.d</code>&#x7684;&#x503C;&#xFF0C;<code>obj.c.d</code>&#x7684;&#x503C;&#x4E5F;&#x968F;&#x7740;&#x6539;&#x53D8;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;<code>Object.assign()</code>&#x662F;&#x6D45;&#x62F7;&#x8D1D;&#xFF0C;&#x53EA;&#x62F7;&#x8D1D;&#x4E86;&#x4E00;&#x5C42;&#xFF0C;&#x5BF9;&#x4E8E;<code>obj.c</code>&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x6240;&#x4EE5;<code>newObj.c</code>&#x5B58;&#x50A8;&#x7684;&#x662F;&#x6307;&#x5411;<code>obj.c</code>&#x6240;&#x6307;&#x5411;&#x7684;&#x6307;&#x9488;&#x5730;&#x5740;&#x3002;&#x540C;&#x7406;<code>...</code>&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;&#x3001;<code>Array.concat()/Array.slice()</code></p>
 </blockquote>
-<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>解决上述问题最常见的实现方式就是：<code>JSON.parse(JSON.stringify(object))</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span>,</span><br><span class="line">  c: &#123;</span><br><span class="line">    d: <span class="number">1</span>,</span><br><span class="line">    e: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj));</span><br><span class="line"></span><br><span class="line">obj.a = <span class="number">2</span>;</span><br><span class="line">newObj.c.d = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">//&#123;a:2,b:2,c:&#123;d:1,e:2&#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj); <span class="comment">//&#123;a:1,b:2,c:&#123;d:2,e:2&#125;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>当然，对象的序列化反序列化<code>JSON.parse(JSON.stringify())</code>并不是万能的。</p>
+<h2 id="&#x6DF1;&#x62F7;&#x8D1D;"><a href="#&#x6DF1;&#x62F7;&#x8D1D;" class="headerlink" title="&#x6DF1;&#x62F7;&#x8D1D;"></a>&#x6DF1;&#x62F7;&#x8D1D;</h2><p>&#x89E3;&#x51B3;&#x4E0A;&#x8FF0;&#x95EE;&#x9898;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x5C31;&#x662F;&#xFF1A;<code>JSON.parse(JSON.stringify(object))</code></p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  a: <span class="hljs-number">1</span>,</span><br><span class="line">  b: <span class="hljs-number">2</span>,</span><br><span class="line">  c: {</span><br><span class="line">    d: <span class="hljs-number">1</span>,</span><br><span class="line">    e: <span class="hljs-number">2</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> newObj = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));</span><br><span class="line"></span><br><span class="line">obj.a = <span class="hljs-number">2</span>;</span><br><span class="line">newObj.c.d = <span class="hljs-number">2</span>;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">//{a:2,b:2,c:{d:1,e:2}}</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj); <span class="hljs-comment">//{a:1,b:2,c:{d:2,e:2}}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x5BF9;&#x8C61;&#x7684;&#x5E8F;&#x5217;&#x5316;&#x53CD;&#x5E8F;&#x5217;&#x5316;<code>JSON.parse(JSON.stringify())</code>&#x5E76;&#x4E0D;&#x662F;&#x4E07;&#x80FD;&#x7684;&#x3002;</p>
 <ul>
-<li>忽略 <code>undefined</code></li>
-<li>忽略 <code>symbol</code></li>
-<li>不能序列化函数</li>
-<li>不能解决循环引用的对象</li>
+<li>&#x5FFD;&#x7565; <code>undefined</code></li>
+<li>&#x5FFD;&#x7565; <code>symbol</code></li>
+<li>&#x4E0D;&#x80FD;&#x5E8F;&#x5217;&#x5316;&#x51FD;&#x6570;</li>
+<li>&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;</li>
 </ul>
 <blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a></p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"copy"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  b: <span class="literal">undefined</span>,</span><br><span class="line">  c: <span class="built_in">Symbol</span>,</span><br><span class="line">  d: <span class="string">"obi"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(newObj); <span class="comment">// &#123;d:obi&#125;  忽略undefined、symbol、不能序列化化函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.c = obj.b; <span class="comment">// `obj.c` 引用 `obj.b`</span></span><br><span class="line">obj.b.c = obj.c; <span class="comment">// `obj.b.c` 又引用 `obj.c`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj));</span><br><span class="line"><span class="built_in">console</span>.log(newObj); <span class="comment">// 直接报错</span></span><br></pre></td></tr></table></figure>
-<h2 id="实现简易的浅拷贝、深拷贝"><a href="#实现简易的浅拷贝、深拷贝" class="headerlink" title="实现简易的浅拷贝、深拷贝"></a>实现简易的浅拷贝、深拷贝</h2><h4 id="浅拷贝-1"><a href="#浅拷贝-1" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">(<span class="params">data, target = &#123;&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">in</span> data) &#123;</span><br><span class="line">    <span class="keyword">if</span> (data.hasOwnProperty(item)) &#123;</span><br><span class="line">      target[item] = data[item];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> target;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newObj = fn(obj);</span><br><span class="line">obj.a = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">//&#123;a:2,b:2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj); <span class="comment">//&#123;a:1,b:2&#125;</span></span><br></pre></td></tr></table></figure>
-<div class="tip"><br>    浅拷贝就是一个for..in循环,<code>Object.prototype.hasOwnProperty</code>的作用是检测目标是否属于自有属性,是则复制<br></div>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  a: <span class="hljs-function">() =&gt;</span> {</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;copy&quot;</span>);</span><br><span class="line">  },</span><br><span class="line">  b: <span class="hljs-literal">undefined</span>,</span><br><span class="line">  c: <span class="hljs-built_in">Symbol</span>,</span><br><span class="line">  d: <span class="hljs-string">&quot;obi&quot;</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> newObj = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj); <span class="hljs-comment">// {d:obi}  &#x5FFD;&#x7565;undefined&#x3001;symbol&#x3001;&#x4E0D;&#x80FD;&#x5E8F;&#x5217;&#x5316;&#x5316;&#x51FD;&#x6570;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  a: <span class="hljs-number">1</span>,</span><br><span class="line">  b: {</span><br><span class="line">    c: <span class="hljs-number">2</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">obj.c = obj.b; <span class="hljs-comment">// `obj.c` &#x5F15;&#x7528; `obj.b`</span></span><br><span class="line">obj.b.c = obj.c; <span class="hljs-comment">// `obj.b.c` &#x53C8;&#x5F15;&#x7528; `obj.c`</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> newObj = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));</span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj); <span class="hljs-comment">// &#x76F4;&#x63A5;&#x62A5;&#x9519;</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x5B9E;&#x73B0;&#x7B80;&#x6613;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#x3001;&#x6DF1;&#x62F7;&#x8D1D;"><a href="#&#x5B9E;&#x73B0;&#x7B80;&#x6613;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#x3001;&#x6DF1;&#x62F7;&#x8D1D;" class="headerlink" title="&#x5B9E;&#x73B0;&#x7B80;&#x6613;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#x3001;&#x6DF1;&#x62F7;&#x8D1D;"></a>&#x5B9E;&#x73B0;&#x7B80;&#x6613;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#x3001;&#x6DF1;&#x62F7;&#x8D1D;</h2><h4 id="&#x6D45;&#x62F7;&#x8D1D;-1"><a href="#&#x6D45;&#x62F7;&#x8D1D;-1" class="headerlink" title="&#x6D45;&#x62F7;&#x8D1D;"></a>&#x6D45;&#x62F7;&#x8D1D;</h4><figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> fn = <span class="hljs-function">(<span class="hljs-params">data, target = {}</span>) =&gt;</span> {</span><br><span class="line">  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">in</span> data) {</span><br><span class="line">    <span class="hljs-keyword">if</span> (data.hasOwnProperty(item)) {</span><br><span class="line">      target[item] = data[item];</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> target;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  a: <span class="hljs-number">1</span>,</span><br><span class="line">  b: <span class="hljs-number">2</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> newObj = fn(obj);</span><br><span class="line">obj.a = <span class="hljs-number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">//{a:2,b:2}</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj); <span class="hljs-comment">//{a:1,b:2}</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="tip"><br>    &#x6D45;&#x62F7;&#x8D1D;&#x5C31;&#x662F;&#x4E00;&#x4E2A;for..in&#x5FAA;&#x73AF;,<code>Object.prototype.hasOwnProperty</code>&#x7684;&#x4F5C;&#x7528;&#x662F;&#x68C0;&#x6D4B;&#x76EE;&#x6807;&#x662F;&#x5426;&#x5C5E;&#x4E8E;&#x81EA;&#x6709;&#x5C5E;&#x6027;,&#x662F;&#x5219;&#x590D;&#x5236;<br></div>
 
-<h4 id="深拷贝-1"><a href="#深拷贝-1" class="headerlink" title="深拷贝"></a>深拷贝</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isObj = <span class="function"><span class="params">o</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> o === <span class="string">"object"</span> || (<span class="keyword">typeof</span> o === <span class="string">"function"</span> &amp;&amp; o !== <span class="literal">null</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> deepClone = <span class="function"><span class="params">obj</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!isObj(obj)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"not a Object！"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> newObj = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;; <span class="comment">// 判断是否是数组或者是对象,设置初始值为空值</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    newObj[key] = isObj(obj[key]) ? deepClone(obj[key]) : obj[key];</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  a: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: <span class="number">2</span>,</span><br><span class="line">    d: <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> newObj = deepClone(obj);</span><br><span class="line">newObj.b.c = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.b.c); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(newObj.b.c); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-<blockquote class="colorquote danger"><p>这只是简单的深拷贝，未考虑其他情况，其余另做探究。</p>
+<h4 id="&#x6DF1;&#x62F7;&#x8D1D;-1"><a href="#&#x6DF1;&#x62F7;&#x8D1D;-1" class="headerlink" title="&#x6DF1;&#x62F7;&#x8D1D;"></a>&#x6DF1;&#x62F7;&#x8D1D;</h4><figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> isObj = <span class="hljs-function"><span class="hljs-params">o</span> =&gt;</span> {</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> o === <span class="hljs-string">&quot;object&quot;</span> || (<span class="hljs-keyword">typeof</span> o === <span class="hljs-string">&quot;function&quot;</span> &amp;&amp; o !== <span class="hljs-literal">null</span>);</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> deepClone = <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> {</span><br><span class="line">  <span class="hljs-keyword">if</span> (!isObj(obj)) {</span><br><span class="line">    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;not a Object&#xFF01;&quot;</span>);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">let</span> newObj = <span class="hljs-built_in">Array</span>.isArray(obj) ? [] : {}; <span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;&#x6570;&#x7EC4;&#x6216;&#x8005;&#x662F;&#x5BF9;&#x8C61;,&#x8BBE;&#x7F6E;&#x521D;&#x59CB;&#x503C;&#x4E3A;&#x7A7A;&#x503C;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {</span><br><span class="line">    newObj[key] = isObj(obj[key]) ? deepClone(obj[key]) : obj[key];</span><br><span class="line">  });</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> newObj;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> obj = {</span><br><span class="line">  a: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],</span><br><span class="line">  b: {</span><br><span class="line">    c: <span class="hljs-number">2</span>,</span><br><span class="line">    d: <span class="hljs-number">3</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"><span class="hljs-keyword">let</span> newObj = deepClone(obj);</span><br><span class="line">newObj.b.c = <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(obj.b.c); <span class="hljs-comment">// 2</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(newObj.b.c); <span class="hljs-comment">// 1</span></span><br></pre></td></tr></tbody></table></figure>
+<blockquote class="colorquote danger"><p>&#x8FD9;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x7684;&#x6DF1;&#x62F7;&#x8D1D;&#xFF0C;&#x672A;&#x8003;&#x8651;&#x5176;&#x4ED6;&#x60C5;&#x51B5;&#xFF0C;&#x5176;&#x4F59;&#x53E6;&#x505A;&#x63A2;&#x7A76;&#x3002;</p>
 </blockquote>
 <blockquote>
-<p>参考来自 Google、MDN</p>
+<p>&#x53C2;&#x8003;&#x6765;&#x81EA; Google&#x3001;MDN</p>
 </blockquote>
-
+</body></html>
     
     </div>
     
@@ -243,12 +206,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/03/10/拾遗JavaScript——Promise/">拾遗JavaScript——Promise</a>
+            <a href="/2019/03/10/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94Promise/">拾遗JavaScript——Promise</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/03/05/拾遗webpack4（三）——处理图片/">拾遗webpack4（三）——处理图片</a>
+            <a href="/2019/03/05/%E6%8B%BE%E9%81%97webpack4%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%9B%BE%E7%89%87/">拾遗webpack4（三）——处理图片</a>
             
         </span>
     </div>
@@ -264,8 +227,9 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2019 mzw&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                &copy; 2020 mzw&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -274,7 +238,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asensiki">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                     
                     GitHub
                     
@@ -293,7 +257,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -429,14 +393,16 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -448,18 +414,20 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

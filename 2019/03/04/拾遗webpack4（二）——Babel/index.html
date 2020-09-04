@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
 <title>拾遗webpack4（二）——Babel - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,31 +14,32 @@
 
 
 
+<meta name="keywords" content="blog">
+
 
 
     <meta name="description" content="webpack4">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗webpack4（二）——Babel">
-<meta property="og:url" content="http://asensiki.github.io/2019/03/04/拾遗webpack4（二）——Babel/index.html">
+<meta property="og:url" content="http://subdriving.club/2019/03/04/%E6%8B%BE%E9%81%97webpack4%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94Babel/index.html">
 <meta property="og:site_name" content="Asensiki">
 <meta property="og:description" content="webpack4">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f48b99b2a84083.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g29asaqp0yj31do072gmg.jpg">
-<meta property="og:updated_time" content="2019-08-02T08:32:29.170Z">
+<meta property="article:published_time" content="2019-03-03T17:11:50.000Z">
+<meta property="article:modified_time" content="2019-03-03T17:11:50.000Z">
+<meta property="article:author" content="mzw">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗webpack4（二）——Babel">
-<meta name="twitter:description" content="webpack4">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/02/5d43f48b99b2a84083.jpg">
 
 
 
 
-
-<link rel="icon" href="./source/images/logo.png">
 
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
@@ -51,7 +52,9 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
+
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -70,7 +73,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -78,7 +81,9 @@
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/images/logo.png" alt height="28">
+                    
+                    <img src="/./images/mzw.png" alt="" height="28">
+                    
                 
             </a>
             <div class="navbar-burger">
@@ -90,35 +95,26 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/archives">Archives</a>
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/categories">categories</a>
+            <a class="navbar-item "
+               href="/categories">categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">tags</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#Babel">1&nbsp;&nbsp;<b>Babel</b></a>
-                    
-                </div>
-            </div>
             
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                 
                 <i class="fab fa-github"></i>
                 
@@ -139,7 +135,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-03-03T17:11:50.000Z" itemprop="datePublished">3月 4 2019</time>
+            
+                <time datetime="2019-03-03T17:11:50.000Z" itemprop="datePublished">3月 4 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -151,45 +149,45 @@
         <span class="column is-narrow">
             
             
-            4 分钟 read (About 543 words)
+            4 分钟 读完 (约 543 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="https://i.loli.net/2019/08/02/5d43f48b99b2a84083.jpg" alt></p>
+        <html><head></head><body><p><img src="https://i.loli.net/2019/08/02/5d43f48b99b2a84083.jpg" alt></p>
 <a id="more"></a>
-<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>Babel 是什么？主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。</p>
-<p>1、执行以下命令安装所需要的 package</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader @babel/core @babel/preset-env</span><br><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></table></figure>
+<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>Babel &#x662F;&#x4EC0;&#x4E48;&#xFF1F;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5C06; ECMAScript 2015+ &#x7248;&#x672C;&#x7684;&#x4EE3;&#x7801;&#x8F6C;&#x6362;&#x4E3A;&#x5411;&#x540E;&#x517C;&#x5BB9;&#x7684; JavaScript &#x8BED;&#x6CD5;&#xFF0C;&#x4EE5;&#x4FBF;&#x80FD;&#x591F;&#x8FD0;&#x884C;&#x5728;&#x5F53;&#x524D;&#x548C;&#x65E7;&#x7248;&#x672C;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x6216;&#x5176;&#x4ED6;&#x73AF;&#x5883;&#x4E2D;&#x3002;</p>
+<p>1&#x3001;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5B89;&#x88C5;&#x6240;&#x9700;&#x8981;&#x7684; package</p>
+<figure class="highlight sh hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader @babel/core @babel/preset-env</span><br><span class="line">npm install --save @babel/polyfill</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
 <ul>
-<li>babel-loader : 这是 Webpack 的 Babel 插件，它将被添加到 Webpack 配置中，以指示它在捆绑过程中通过 Babel 运行目标文件；</li>
+<li>babel-loader : &#x8FD9;&#x662F; Webpack &#x7684; Babel &#x63D2;&#x4EF6;&#xFF0C;&#x5B83;&#x5C06;&#x88AB;&#x6DFB;&#x52A0;&#x5230; Webpack &#x914D;&#x7F6E;&#x4E2D;&#xFF0C;&#x4EE5;&#x6307;&#x793A;&#x5B83;&#x5728;&#x6346;&#x7ED1;&#x8FC7;&#x7A0B;&#x4E2D;&#x901A;&#x8FC7; Babel &#x8FD0;&#x884C;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#xFF1B;</li>
 </ul>
 </blockquote>
 <ul>
 <li>@babel/core</li>
-<li>@babel/preset-env：通过根据目标浏览器或运行时环境自动确定所需的 Babel 插件和 polyfill，将代码编译为 ES5</li>
-<li>@babel/polyfill：垫片，转化 ES6 内置语法（Array.from,Object.assign 等）</li>
+<li>@babel/preset-env&#xFF1A;&#x901A;&#x8FC7;&#x6839;&#x636E;&#x76EE;&#x6807;&#x6D4F;&#x89C8;&#x5668;&#x6216;&#x8FD0;&#x884C;&#x65F6;&#x73AF;&#x5883;&#x81EA;&#x52A8;&#x786E;&#x5B9A;&#x6240;&#x9700;&#x7684; Babel &#x63D2;&#x4EF6;&#x548C; polyfill&#xFF0C;&#x5C06;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;&#x4E3A; ES5</li>
+<li>@babel/polyfill&#xFF1A;&#x57AB;&#x7247;&#xFF0C;&#x8F6C;&#x5316; ES6 &#x5185;&#x7F6E;&#x8BED;&#x6CD5;&#xFF08;Array.from,Object.assign &#x7B49;&#xFF09;</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "@babel/core": "^7.4.3",</span><br><span class="line">    "@babel/preset-env": "^7.4.3",</span><br><span class="line">    "babel-loader": "^8.0.5",</span><br><span class="line">    "clean-webpack-plugin": "^2.0.1",</span><br><span class="line">    "webpack": "^4.30.0",</span><br><span class="line">    "webpack-cli": "^3.3.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123;</span><br><span class="line">    "@babel/polyfill": "^7.4.3"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>2、新建 babel 配置文件<code>.babelrc</code> 来配置 babel</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [<span class="string">"@babel/preset-env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、在<code>webpack.config.js</code>中配置 babel-loader</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.js$/</span>, <span class="comment">//匹配js文件</span></span><br><span class="line">      exclude: <span class="regexp">/node_modules/</span>, <span class="comment">//忽略目标文件夹</span></span><br><span class="line">      loader: <span class="string">"babel-loader"</span> <span class="comment">// 使用babel-loader</span></span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4、验证</p>
-<p>在 index.js 中使用 ES6 语法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import '@babel/polyfill'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>];</span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(...arr);</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
-<blockquote class="colorquote warning"><p>这里还需要<code>import &#39;@babel/polyfill&#39;</code><br>全局引入打包后体积大、根据需要转译的文件按需引用又很麻烦，这里只需要配置一下<code>babelrc</code>，babel 自动转译</p>
+<figure class="highlight hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&quot;devDependencies&quot;: {</span><br><span class="line">    &quot;@babel/core&quot;: &quot;^7.4.3&quot;,</span><br><span class="line">    &quot;@babel/preset-env&quot;: &quot;^7.4.3&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^8.0.5&quot;,</span><br><span class="line">    &quot;clean-webpack-plugin&quot;: &quot;^2.0.1&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.30.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.3.0&quot;</span><br><span class="line">  },</span><br><span class="line">  &quot;dependencies&quot;: {</span><br><span class="line">    &quot;@babel/polyfill&quot;: &quot;^7.4.3&quot;</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+<p>2&#x3001;&#x65B0;&#x5EFA; babel &#x914D;&#x7F6E;&#x6587;&#x4EF6;<code>.babelrc</code> &#x6765;&#x914D;&#x7F6E; babel</p>
+<figure class="highlight json hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="hljs-attr">&quot;presets&quot;</span>: [<span class="hljs-string">&quot;@babel/preset-env&quot;</span>]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>3&#x3001;&#x5728;<code>webpack.config.js</code>&#x4E2D;&#x914D;&#x7F6E; babel-loader</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>: {</span><br><span class="line">  rules: [</span><br><span class="line">    {</span><br><span class="line">      test: <span class="hljs-regexp">/\.js$/</span>, <span class="hljs-comment">//&#x5339;&#x914D;js&#x6587;&#x4EF6;</span></span><br><span class="line">      exclude: <span class="hljs-regexp">/node_modules/</span>, <span class="hljs-comment">//&#x5FFD;&#x7565;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x5939;</span></span><br><span class="line">      loader: <span class="hljs-string">&quot;babel-loader&quot;</span> <span class="hljs-comment">// &#x4F7F;&#x7528;babel-loader</span></span><br><span class="line">    }</span><br><span class="line">  ];</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>4&#x3001;&#x9A8C;&#x8BC1;</p>
+<p>&#x5728; index.js &#x4E2D;&#x4F7F;&#x7528; ES6 &#x8BED;&#x6CD5;</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// import &apos;@babel/polyfill&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>];</span><br><span class="line"><span class="hljs-keyword">const</span> fn = <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(...arr);</span><br><span class="line">fn();</span><br></pre></td></tr></tbody></table></figure>
+<blockquote class="colorquote warning"><p>&#x8FD9;&#x91CC;&#x8FD8;&#x9700;&#x8981;<code>import &apos;@babel/polyfill&apos;</code><br>&#x5168;&#x5C40;&#x5F15;&#x5165;&#x6253;&#x5305;&#x540E;&#x4F53;&#x79EF;&#x5927;&#x3001;&#x6839;&#x636E;&#x9700;&#x8981;&#x8F6C;&#x8BD1;&#x7684;&#x6587;&#x4EF6;&#x6309;&#x9700;&#x5F15;&#x7528;&#x53C8;&#x5F88;&#x9EBB;&#x70E6;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x9700;&#x8981;&#x914D;&#x7F6E;&#x4E00;&#x4E0B;<code>babelrc</code>&#xFF0C;babel &#x81EA;&#x52A8;&#x8F6C;&#x8BD1;</p>
 </blockquote>
-<figure class="highlight json"><figcaption><span>.babelrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>,</span><br><span class="line">        <span class="attr">"corejs"</span>: <span class="string">"3"</span> //使用core-js@<span class="number">3</span>版本</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="tip"><br>    这里遇到一个小坑，配置完<code>.babelrc</code>后执行<code>npm run build</code>，控制台首先会提示一段警告: 大概意思就是指定用什么版本的<code>core-js</code>,默认使用<code>core-js@2</code>版本<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg" alt><br>    然后报错<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg" alt><br>    这里配置一下<code>core-js</code>的版本<br></div>
+<figure class="highlight json hljs"><figcaption><span>.babelrc</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="hljs-attr">&quot;presets&quot;</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="hljs-string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">      {</span><br><span class="line">        <span class="hljs-attr">&quot;useBuiltIns&quot;</span>: <span class="hljs-string">&quot;usage&quot;</span>,</span><br><span class="line">        <span class="hljs-attr">&quot;corejs&quot;</span>: <span class="hljs-string">&quot;3&quot;</span> <span class="hljs-comment">//&#x4F7F;&#x7528;core-js@3&#x7248;&#x672C;</span></span><br><span class="line">      }</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="tip"><br>    &#x8FD9;&#x91CC;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x5C0F;&#x5751;&#xFF0C;&#x914D;&#x7F6E;&#x5B8C;<code>.babelrc</code>&#x540E;&#x6267;&#x884C;<code>npm run build</code>&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x9996;&#x5148;&#x4F1A;&#x63D0;&#x793A;&#x4E00;&#x6BB5;&#x8B66;&#x544A;: &#x5927;&#x6982;&#x610F;&#x601D;&#x5C31;&#x662F;&#x6307;&#x5B9A;&#x7528;&#x4EC0;&#x4E48;&#x7248;&#x672C;&#x7684;<code>core-js</code>,&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;<code>core-js@2</code>&#x7248;&#x672C;<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kgtagj31cs076wg5.jpg" alt><br>    &#x7136;&#x540E;&#x62A5;&#x9519;<br>    <img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29a6kibsuj31ds034aap.jpg" alt><br>    &#x8FD9;&#x91CC;&#x914D;&#x7F6E;&#x4E00;&#x4E0B;<code>core-js</code>&#x7684;&#x7248;&#x672C;<br></div>
 
-<p>执行<code>npm run build</code><br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg" alt></p>
-<p>浏览器中打开<code>dist</code>文件夹下的<code>index.html</code>，查看控制台输出。<br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29asaqp0yj31do072gmg.jpg" alt></p>
-<blockquote class="colorquote danger"><p>Chrome 最新版是支持 ES6 语法的，最好的还是在 IE 下测试。</p>
+<p>&#x6267;&#x884C;<code>npm run build</code><br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29aqj3picj30ny02o0t4.jpg" alt></p>
+<p>&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x6253;&#x5F00;<code>dist</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>index.html</code>&#xFF0C;&#x67E5;&#x770B;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#x3002;<br><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g29asaqp0yj31do072gmg.jpg" alt></p>
+<blockquote class="colorquote danger"><p>Chrome &#x6700;&#x65B0;&#x7248;&#x662F;&#x652F;&#x6301; ES6 &#x8BED;&#x6CD5;&#x7684;&#xFF0C;&#x6700;&#x597D;&#x7684;&#x8FD8;&#x662F;&#x5728; IE &#x4E0B;&#x6D4B;&#x8BD5;&#x3002;</p>
 </blockquote>
-
+</body></html>
     
     </div>
     
@@ -197,12 +195,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/03/05/拾遗webpack4（三）——处理图片/">拾遗webpack4（三）——处理图片</a>
+            <a href="/2019/03/05/%E6%8B%BE%E9%81%97webpack4%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%9B%BE%E7%89%87/">拾遗webpack4（三）——处理图片</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/03/02/拾遗webpack4（一）——入门/">拾遗webpack4（一）——入门</a>
+            <a href="/2019/03/02/%E6%8B%BE%E9%81%97webpack4%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%85%A5%E9%97%A8/">拾遗webpack4（一）——入门</a>
             
         </span>
     </div>
@@ -218,8 +216,9 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2019 mzw&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                &copy; 2020 mzw&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -228,7 +227,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asensiki">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                     
                     GitHub
                     
@@ -247,7 +246,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -383,14 +382,16 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -402,18 +403,20 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
 <title>拾遗JavaScript——原型与原型链 - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,13 +12,15 @@
 
 
 
+<meta name="keywords" content="blog">
+
 
 
     <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗JavaScript——原型与原型链">
-<meta property="og:url" content="http://asensiki.github.io/2019/04/10/拾遗JavaScript——原型与原型链/index.html">
+<meta property="og:url" content="http://subdriving.club/2019/04/10/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/index.html">
 <meta property="og:site_name" content="Asensiki">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/08/04/kpRnZaJUxwKiqBD.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/04/HC6mPZU74MSqOYD.png">
@@ -27,16 +29,16 @@
 <meta property="og:image" content="https://i.loli.net/2019/08/04/cKjMrBVQGuJP9oD.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/04/rJkRPOqhiB2TtUL.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f4c01cfe186926.png">
-<meta property="og:updated_time" content="2019-08-04T11:22:48.064Z">
+<meta property="article:published_time" content="2019-04-10T12:34:57.000Z">
+<meta property="article:modified_time" content="2019-04-10T12:34:57.000Z">
+<meta property="article:author" content="mzw">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗JavaScript——原型与原型链">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
 
 
 
 
-
-<link rel="icon" href="./source/images/logo.png">
 
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
@@ -49,7 +51,9 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
+
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -68,7 +72,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -76,7 +80,9 @@
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/images/logo.png" alt height="28">
+                    
+                    <img src="/./images/mzw.png" alt="" height="28">
+                    
                 
             </a>
             <div class="navbar-burger">
@@ -88,77 +94,26 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/archives">Archives</a>
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/categories">categories</a>
+            <a class="navbar-item "
+               href="/categories">categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">tags</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#一、原型">1&nbsp;&nbsp;<b>一、原型</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#prototype">1.1&nbsp;&nbsp;prototype</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#函数的prototype是什么？">1.2&nbsp;&nbsp;函数的prototype是什么？</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#😪-抽象能力差怎么办？————画图">1.2.1&nbsp;&nbsp;😪 抽象能力差怎么办？————画图</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#proto">1.3&nbsp;&nbsp;__proto__</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#😪-抽象能力差怎么办？——画图">1.3.1&nbsp;&nbsp;😪 抽象能力差怎么办？——画图</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#画图捋一捋～">1.4&nbsp;&nbsp;画图捋一捋～</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#原型的原型-？">2&nbsp;&nbsp;<b>原型的原型 ？</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#原型链">3&nbsp;&nbsp;<b>原型链</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#图腾">4&nbsp;&nbsp;<b>图腾</b></a>
-                    
-                </div>
-            </div>
             
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                 
                 <i class="fab fa-github"></i>
                 
@@ -179,7 +134,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-04-10T12:34:57.000Z" itemprop="datePublished">4月 10 2019</time>
+            
+                <time datetime="2019-04-10T12:34:57.000Z" itemprop="datePublished">4月 10 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -191,55 +148,55 @@
         <span class="column is-narrow">
             
             
-            7 分钟 read (About 985 words)
+            7 分钟 读完 (约 985 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
+        <html><head></head><body><p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
 <a id="more"></a>
 <hr>
-<h2 id="一、原型"><a href="#一、原型" class="headerlink" title="一、原型"></a>一、原型</h2><h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a><code>prototype</code></h3><p>基本上每个函数都有 一个特殊的属性——原型（prototype），它是一个显式属性。</p>
-<p>当我们创建一个函数时，这个属性就自动被创建。</p>
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="函数的prototype是什么？"><a href="#函数的prototype是什么？" class="headerlink" title="函数的prototype是什么？"></a><strong>函数的prototype</strong>是什么？</h3><p> prototype 属性：继承成员定义的地方。</p>
-<p>通俗的理解为：当我们实例化一个对象时，该对象会从原型中“继承”属性和方法。</p>
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animal</span>(<span class="hljs-params"></span>)</span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">animal.prototype.class = <span class="hljs-string">"animal"</span>;</span><br><span class="line"></span><br><span class="line">animal.prototype.eat = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"eat something"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> animal();</span><br><span class="line"></span><br><span class="line">cat.eat(); <span class="hljs-comment">// eat something</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// "animal"</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="😪-抽象能力差怎么办？————画图"><a href="#😪-抽象能力差怎么办？————画图" class="headerlink" title="😪 抽象能力差怎么办？————画图"></a>😪 抽象能力差怎么办？————画图</h4><p><img src="https://i.loli.net/2019/08/04/kpRnZaJUxwKiqBD.png" alt></p>
-<p>当我们打印<code>cat</code>这个实例时…….. </p>
+<h2 id="&#x4E00;&#x3001;&#x539F;&#x578B;"><a href="#&#x4E00;&#x3001;&#x539F;&#x578B;" class="headerlink" title="&#x4E00;&#x3001;&#x539F;&#x578B;"></a>&#x4E00;&#x3001;&#x539F;&#x578B;</h2><h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a><code>prototype</code></h3><p>&#x57FA;&#x672C;&#x4E0A;&#x6BCF;&#x4E2A;&#x51FD;&#x6570;&#x90FD;&#x6709; &#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x5C5E;&#x6027;&#x2014;&#x2014;&#x539F;&#x578B;&#xFF08;prototype&#xFF09;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x663E;&#x5F0F;&#x5C5E;&#x6027;&#x3002;</p>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x5C31;&#x81EA;&#x52A8;&#x88AB;&#x521B;&#x5EFA;&#x3002;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x51FD;&#x6570;&#x7684;prototype&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><a href="#&#x51FD;&#x6570;&#x7684;prototype&#x662F;&#x4EC0;&#x4E48;&#xFF1F;" class="headerlink" title="&#x51FD;&#x6570;&#x7684;prototype&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"></a><strong>&#x51FD;&#x6570;&#x7684;prototype</strong>&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h3><p> prototype &#x5C5E;&#x6027;&#xFF1A;&#x7EE7;&#x627F;&#x6210;&#x5458;&#x5B9A;&#x4E49;&#x7684;&#x5730;&#x65B9;&#x3002;</p>
+<p>&#x901A;&#x4FD7;&#x7684;&#x7406;&#x89E3;&#x4E3A;&#xFF1A;&#x5F53;&#x6211;&#x4EEC;&#x5B9E;&#x4F8B;&#x5316;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x4F1A;&#x4ECE;&#x539F;&#x578B;&#x4E2D;&#x201C;&#x7EE7;&#x627F;&#x201D;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x3002;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animal</span>(<span class="hljs-params"></span>)</span>{};</span><br><span class="line"></span><br><span class="line">animal.prototype.class = <span class="hljs-string">&quot;animal&quot;</span>;</span><br><span class="line"></span><br><span class="line">animal.prototype.eat = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;eat something&quot;</span>);</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> animal();</span><br><span class="line"></span><br><span class="line">cat.eat(); <span class="hljs-comment">// eat something</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// &quot;animal&quot;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="&#x1F62A;-&#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x2014;&#x2014;&#x753B;&#x56FE;"><a href="#&#x1F62A;-&#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x2014;&#x2014;&#x753B;&#x56FE;" class="headerlink" title="&#x1F62A; &#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x2014;&#x2014;&#x753B;&#x56FE;"></a>&#x1F62A; &#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x2014;&#x2014;&#x753B;&#x56FE;</h4><p><img src="https://i.loli.net/2019/08/04/kpRnZaJUxwKiqBD.png" alt></p>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x6253;&#x5370;<code>cat</code>&#x8FD9;&#x4E2A;&#x5B9E;&#x4F8B;&#x65F6;&#x2026;&#x2026;.. </p>
 <p><img src="https://i.loli.net/2019/08/04/HC6mPZU74MSqOYD.png" alt></p>
-<p>What？？？</p>
-<blockquote class="colorquote info"><p>OOP思想中的继承（java，C++等）是一种对属性方法的复制操作，但对象实例<code>cat</code>中并没有复制过来的属性和方法，但在调用<code>class</code>属性和<code>eat()</code>方法时都可以正常调用。这？？？在<code>JavaScript</code> 的继承操作其实是一种“链接”操作，是一种委托，通过<code>__proto__</code> 链接到构造函数的prototype。</p>
+<p>What&#xFF1F;&#xFF1F;&#xFF1F;</p>
+<blockquote class="colorquote info"><p>OOP&#x601D;&#x60F3;&#x4E2D;&#x7684;&#x7EE7;&#x627F;&#xFF08;java&#xFF0C;C++&#x7B49;&#xFF09;&#x662F;&#x4E00;&#x79CD;&#x5BF9;&#x5C5E;&#x6027;&#x65B9;&#x6CD5;&#x7684;&#x590D;&#x5236;&#x64CD;&#x4F5C;&#xFF0C;&#x4F46;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;<code>cat</code>&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x590D;&#x5236;&#x8FC7;&#x6765;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x5728;&#x8C03;&#x7528;<code>class</code>&#x5C5E;&#x6027;&#x548C;<code>eat()</code>&#x65B9;&#x6CD5;&#x65F6;&#x90FD;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8C03;&#x7528;&#x3002;&#x8FD9;&#xFF1F;&#xFF1F;&#xFF1F;&#x5728;<code>JavaScript</code> &#x7684;&#x7EE7;&#x627F;&#x64CD;&#x4F5C;&#x5176;&#x5B9E;&#x662F;&#x4E00;&#x79CD;&#x201C;&#x94FE;&#x63A5;&#x201D;&#x64CD;&#x4F5C;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x59D4;&#x6258;&#xFF0C;&#x901A;&#x8FC7;<code>__proto__</code> &#x94FE;&#x63A5;&#x5230;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;prototype&#x3002;</p>
 </blockquote>
-<h3 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h3><p><code>__proto__</code> 是每一个对象（除了null）都有的隐式属性，它指向创建该对象的构造函数的<code>[[prototype]]</code>，因此我们可以访问到定义在构造函数的prototype上的属性和方法。</p>
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(cat.__proto__ == animal.prototype); <span class="hljs-comment">// true</span></span><br></pre></td></tr></table></figure>
-<blockquote class="colorquote info"><p>当使用<code>cat.__proto__</code> 时，实际上是返回<code>Object.getPrototypeOf(cat)</code>。<br>可以理解为一种getter/setter操作。</p>
+<h3 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h3><p><code>__proto__</code> &#x662F;&#x6BCF;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF08;&#x9664;&#x4E86;null&#xFF09;&#x90FD;&#x6709;&#x7684;&#x9690;&#x5F0F;&#x5C5E;&#x6027;&#xFF0C;&#x5B83;&#x6307;&#x5411;&#x521B;&#x5EFA;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;<code>[[prototype]]</code>&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;&#x5B9A;&#x4E49;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;prototype&#x4E0A;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x3002;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(cat.__proto__ == animal.prototype); <span class="hljs-comment">// true</span></span><br></pre></td></tr></tbody></table></figure>
+<blockquote class="colorquote info"><p>&#x5F53;&#x4F7F;&#x7528;<code>cat.__proto__</code> &#x65F6;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x8FD4;&#x56DE;<code>Object.getPrototypeOf(cat)</code>&#x3002;<br>&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x79CD;getter/setter&#x64CD;&#x4F5C;&#x3002;</p>
 </blockquote>
-<h4 id="😪-抽象能力差怎么办？——画图"><a href="#😪-抽象能力差怎么办？——画图" class="headerlink" title="😪 抽象能力差怎么办？——画图"></a>😪 抽象能力差怎么办？——画图</h4><p><img src="https://i.loli.net/2019/08/04/xwN84dYJXcnpCRo.png" alt></p>
+<h4 id="&#x1F62A;-&#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x753B;&#x56FE;"><a href="#&#x1F62A;-&#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x753B;&#x56FE;" class="headerlink" title="&#x1F62A; &#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x753B;&#x56FE;"></a>&#x1F62A; &#x62BD;&#x8C61;&#x80FD;&#x529B;&#x5DEE;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x2014;&#x2014;&#x753B;&#x56FE;</h4><p><img src="https://i.loli.net/2019/08/04/xwN84dYJXcnpCRo.png" alt></p>
 <hr>
 <p><code>constructor</code></p>
-<p>在<code>animal.prototype</code>中还有一个属性<code>constructor</code>,它是干什么用的？</p>
-<p><code>constructor</code>:每一个实例对象都从原型中继承一个 <code>constructor</code> 属性，它指向构造此实例对象的构造函数；</p>
-<p>因此实例<code>cat</code>的构造函数是<code>function animal()</code></p>
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(animal.prototype.constructor === animal); <span class="hljs-comment">// true</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.constructor === animal); <span class="hljs-comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>我们还可以这样去创建<code>animal</code>的实例，但一般来说知道原始构造器<code>function animal()</code>的情况下不会用这样的方式。</p>
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> dog = <span class="hljs-keyword">new</span> cat.constructor();</span><br><span class="line">dog.class <span class="hljs-comment">// animal</span></span><br><span class="line">dog.eat() <span class="hljs-comment">// eat something</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(dog.constructor === animal); <span class="hljs-comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>&#x5728;<code>animal.prototype</code>&#x4E2D;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;<code>constructor</code>,&#x5B83;&#x662F;&#x5E72;&#x4EC0;&#x4E48;&#x7528;&#x7684;&#xFF1F;</p>
+<p><code>constructor</code>:&#x6BCF;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x90FD;&#x4ECE;&#x539F;&#x578B;&#x4E2D;&#x7EE7;&#x627F;&#x4E00;&#x4E2A; <code>constructor</code> &#x5C5E;&#x6027;&#xFF0C;&#x5B83;&#x6307;&#x5411;&#x6784;&#x9020;&#x6B64;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF1B;</p>
+<p>&#x56E0;&#x6B64;&#x5B9E;&#x4F8B;<code>cat</code>&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x662F;<code>function animal()</code></p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(animal.prototype.constructor === animal); <span class="hljs-comment">// true</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.constructor === animal); <span class="hljs-comment">// true</span></span><br></pre></td></tr></tbody></table></figure>
+<p>&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x53BB;&#x521B;&#x5EFA;<code>animal</code>&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x4F46;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x77E5;&#x9053;&#x539F;&#x59CB;&#x6784;&#x9020;&#x5668;<code>function animal()</code>&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4E0D;&#x4F1A;&#x7528;&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> dog = <span class="hljs-keyword">new</span> cat.constructor();</span><br><span class="line">dog.class <span class="hljs-comment">// animal</span></span><br><span class="line">dog.eat() <span class="hljs-comment">// eat something</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(dog.constructor === animal); <span class="hljs-comment">// true</span></span><br></pre></td></tr></tbody></table></figure>
 <hr>
-<h3 id="画图捋一捋～"><a href="#画图捋一捋～" class="headerlink" title="画图捋一捋～"></a>画图捋一捋～</h3><p><img src="https://i.loli.net/2019/08/04/vr7CXNwhVtMAf4P.png" alt></p>
+<h3 id="&#x753B;&#x56FE;&#x634B;&#x4E00;&#x634B;&#xFF5E;"><a href="#&#x753B;&#x56FE;&#x634B;&#x4E00;&#x634B;&#xFF5E;" class="headerlink" title="&#x753B;&#x56FE;&#x634B;&#x4E00;&#x634B;&#xFF5E;"></a>&#x753B;&#x56FE;&#x634B;&#x4E00;&#x634B;&#xFF5E;</h3><p><img src="https://i.loli.net/2019/08/04/vr7CXNwhVtMAf4P.png" alt></p>
 <hr>
-<h2 id="原型的原型-？"><a href="#原型的原型-？" class="headerlink" title="原型的原型 ？"></a>原型的原型 ？</h2><p>捋清了实例与原型的关系,那原型的原型是什么？</p>
-<p><code>animal.prototype</code> 中也有一个属性<code>__proto__</code> , 这个<code>__proto__</code>属性指向哪？</p>
+<h2 id="&#x539F;&#x578B;&#x7684;&#x539F;&#x578B;-&#xFF1F;"><a href="#&#x539F;&#x578B;&#x7684;&#x539F;&#x578B;-&#xFF1F;" class="headerlink" title="&#x539F;&#x578B;&#x7684;&#x539F;&#x578B; &#xFF1F;"></a>&#x539F;&#x578B;&#x7684;&#x539F;&#x578B; &#xFF1F;</h2><p>&#x634B;&#x6E05;&#x4E86;&#x5B9E;&#x4F8B;&#x4E0E;&#x539F;&#x578B;&#x7684;&#x5173;&#x7CFB;,&#x90A3;&#x539F;&#x578B;&#x7684;&#x539F;&#x578B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</p>
+<p><code>animal.prototype</code> &#x4E2D;&#x4E5F;&#x6709;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;<code>__proto__</code> , &#x8FD9;&#x4E2A;<code>__proto__</code>&#x5C5E;&#x6027;&#x6307;&#x5411;&#x54EA;&#xFF1F;</p>
 <p><img src="https://i.loli.net/2019/08/04/cKjMrBVQGuJP9oD.png" alt></p>
-<p>在JavaScript中，函数其实也是<code>Object</code>，<code>animal.prototype.__proto__</code> 指向的是<code>Object.prototype</code></p>
-<p>而<code>Object.prototype.__proto__ === null</code></p>
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animal</span>(<span class="hljs-params"></span>)</span>&#123;&#125;;</span><br><span class="line">animal.prototype.class = <span class="hljs-string">"animal"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> animal();</span><br><span class="line">cat.class = <span class="hljs-string">"cat"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// cat</span></span><br><span class="line"><span class="hljs-keyword">delete</span> cat.class; <span class="hljs-comment">// 删除 cat 的 class 属性</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// animal</span></span><br><span class="line"></span><br><span class="line">cat.isPrototypeOf();</span><br><span class="line">cat.valueOf()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>由以上代码可以看出:<br>1、<code>cat.class</code> 首先在实例<code>cat</code>上寻找属性<code>class</code>，输出<code>“cat”</code><br>2、删除实例cat上的属性<code>class</code>，仍能调用，但输出的是<code>&quot;animal&quot;</code><br>这是因为当在实例上寻找不到属性<code>class</code>时，会通过<code>__proto__</code>找到<code>aminal.prototype</code>，在上面寻找到<code>class</code>，并输出<code>&quot;animal&quot;</code><br>3、并没有在实例<code>cat</code>或者<code>animal.prototype</code>上定义<code>isPrototypeOf()/valueOf()</code>，为什么还能调用？<br>这是因为当在实例、实例原型<code>animal.prototype</code>上找不时，解析器会继续往上，即<code>animal.prototype.__proto__</code>，直到<code>__proto__</code>指向<code>null</code>则停止寻找。此时<code>animal.prototype.__proto__</code>指向的是<code>Object.prototype</code>，所以调用上面定义的方法<code>isPrototypeOf()/valueOf()</code></p>
-<p>实例<code>cat</code>、构造函数<code>animal</code>的原型<code>prototype</code>、<code>Object.prototype</code> 以<code>__proto__</code>链接起来的关系就形成了原型链。</p>
+<p>&#x5728;JavaScript&#x4E2D;&#xFF0C;&#x51FD;&#x6570;&#x5176;&#x5B9E;&#x4E5F;&#x662F;<code>Object</code>&#xFF0C;<code>animal.prototype.__proto__</code> &#x6307;&#x5411;&#x7684;&#x662F;<code>Object.prototype</code></p>
+<p>&#x800C;<code>Object.prototype.__proto__ === null</code></p>
+<h2 id="&#x539F;&#x578B;&#x94FE;"><a href="#&#x539F;&#x578B;&#x94FE;" class="headerlink" title="&#x539F;&#x578B;&#x94FE;"></a>&#x539F;&#x578B;&#x94FE;</h2><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animal</span>(<span class="hljs-params"></span>)</span>{};</span><br><span class="line">animal.prototype.class = <span class="hljs-string">&quot;animal&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> cat = <span class="hljs-keyword">new</span> animal();</span><br><span class="line">cat.class = <span class="hljs-string">&quot;cat&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// cat</span></span><br><span class="line"><span class="hljs-keyword">delete</span> cat.class; <span class="hljs-comment">// &#x5220;&#x9664; cat &#x7684; class &#x5C5E;&#x6027;</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(cat.class); <span class="hljs-comment">// animal</span></span><br><span class="line"></span><br><span class="line">cat.isPrototypeOf();</span><br><span class="line">cat.valueOf()</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>&#x7531;&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x770B;&#x51FA;:<br>1&#x3001;<code>cat.class</code> &#x9996;&#x5148;&#x5728;&#x5B9E;&#x4F8B;<code>cat</code>&#x4E0A;&#x5BFB;&#x627E;&#x5C5E;&#x6027;<code>class</code>&#xFF0C;&#x8F93;&#x51FA;<code>&#x201C;cat&#x201D;</code><br>2&#x3001;&#x5220;&#x9664;&#x5B9E;&#x4F8B;cat&#x4E0A;&#x7684;&#x5C5E;&#x6027;<code>class</code>&#xFF0C;&#x4ECD;&#x80FD;&#x8C03;&#x7528;&#xFF0C;&#x4F46;&#x8F93;&#x51FA;&#x7684;&#x662F;<code>&quot;animal&quot;</code><br>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5F53;&#x5728;&#x5B9E;&#x4F8B;&#x4E0A;&#x5BFB;&#x627E;&#x4E0D;&#x5230;&#x5C5E;&#x6027;<code>class</code>&#x65F6;&#xFF0C;&#x4F1A;&#x901A;&#x8FC7;<code>__proto__</code>&#x627E;&#x5230;<code>aminal.prototype</code>&#xFF0C;&#x5728;&#x4E0A;&#x9762;&#x5BFB;&#x627E;&#x5230;<code>class</code>&#xFF0C;&#x5E76;&#x8F93;&#x51FA;<code>&quot;animal&quot;</code><br>3&#x3001;&#x5E76;&#x6CA1;&#x6709;&#x5728;&#x5B9E;&#x4F8B;<code>cat</code>&#x6216;&#x8005;<code>animal.prototype</code>&#x4E0A;&#x5B9A;&#x4E49;<code>isPrototypeOf()/valueOf()</code>&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD8;&#x80FD;&#x8C03;&#x7528;&#xFF1F;<br>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5F53;&#x5728;&#x5B9E;&#x4F8B;&#x3001;&#x5B9E;&#x4F8B;&#x539F;&#x578B;<code>animal.prototype</code>&#x4E0A;&#x627E;&#x4E0D;&#x65F6;&#xFF0C;&#x89E3;&#x6790;&#x5668;&#x4F1A;&#x7EE7;&#x7EED;&#x5F80;&#x4E0A;&#xFF0C;&#x5373;<code>animal.prototype.__proto__</code>&#xFF0C;&#x76F4;&#x5230;<code>__proto__</code>&#x6307;&#x5411;<code>null</code>&#x5219;&#x505C;&#x6B62;&#x5BFB;&#x627E;&#x3002;&#x6B64;&#x65F6;<code>animal.prototype.__proto__</code>&#x6307;&#x5411;&#x7684;&#x662F;<code>Object.prototype</code>&#xFF0C;&#x6240;&#x4EE5;&#x8C03;&#x7528;&#x4E0A;&#x9762;&#x5B9A;&#x4E49;&#x7684;&#x65B9;&#x6CD5;<code>isPrototypeOf()/valueOf()</code></p>
+<p>&#x5B9E;&#x4F8B;<code>cat</code>&#x3001;&#x6784;&#x9020;&#x51FD;&#x6570;<code>animal</code>&#x7684;&#x539F;&#x578B;<code>prototype</code>&#x3001;<code>Object.prototype</code> &#x4EE5;<code>__proto__</code>&#x94FE;&#x63A5;&#x8D77;&#x6765;&#x7684;&#x5173;&#x7CFB;&#x5C31;&#x5F62;&#x6210;&#x4E86;&#x539F;&#x578B;&#x94FE;&#x3002;</p>
 <p><img src="https://i.loli.net/2019/08/04/rJkRPOqhiB2TtUL.png" alt></p>
 <hr>
-<h2 id="图腾"><a href="#图腾" class="headerlink" title="图腾"></a>图腾</h2><p><img src="https://i.loli.net/2019/08/02/5d43f4c01cfe186926.png" alt></p>
-
+<h2 id="&#x56FE;&#x817E;"><a href="#&#x56FE;&#x817E;" class="headerlink" title="&#x56FE;&#x817E;"></a>&#x56FE;&#x817E;</h2><p><img src="https://i.loli.net/2019/08/02/5d43f4c01cfe186926.png" alt></p>
+</body></html>
     
     </div>
     
@@ -247,12 +204,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/06/10/拾遗JavaScript——call、apply、bind/">拾遗JavaScript——call、apply、bind</a>
+            <a href="/2019/06/10/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94call%E3%80%81apply%E3%80%81bind/">拾遗JavaScript——call、apply、bind</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/04/09/拾遗JavaScript——Event-Loop/">拾遗JavaScript——Event Loop</a>
+            <a href="/2019/04/09/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94Event-Loop/">拾遗JavaScript——Event Loop</a>
             
         </span>
     </div>
@@ -268,8 +225,9 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2019 mzw&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                &copy; 2020 mzw&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -278,7 +236,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asensiki">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                     
                     GitHub
                     
@@ -297,7 +255,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -433,14 +391,16 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -452,18 +412,20 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

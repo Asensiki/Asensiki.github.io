@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
 <title>拾遗JavaScript——async-await - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,24 +12,26 @@
 
 
 
+<meta name="keywords" content="blog">
+
 
 
     <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗JavaScript——async-await">
-<meta property="og:url" content="http://asensiki.github.io/2019/03/12/拾遗JavaScript——async-await/index.html">
+<meta property="og:url" content="http://subdriving.club/2019/03/12/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94async-await/index.html">
 <meta property="og:site_name" content="Asensiki">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
-<meta property="og:updated_time" content="2019-08-02T08:31:54.205Z">
+<meta property="article:published_time" content="2019-03-12T12:10:26.000Z">
+<meta property="article:modified_time" content="2019-03-12T12:10:26.000Z">
+<meta property="article:author" content="mzw">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗JavaScript——async-await">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg">
 
 
 
 
-
-<link rel="icon" href="./source/images/logo.png">
 
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
@@ -42,7 +44,9 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
+
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -61,7 +65,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -69,7 +73,9 @@
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/images/logo.png" alt height="28">
+                    
+                    <img src="/./images/mzw.png" alt="" height="28">
+                    
                 
             </a>
             <div class="navbar-burger">
@@ -81,55 +87,26 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/archives">Archives</a>
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/categories">categories</a>
+            <a class="navbar-item "
+               href="/categories">categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">tags</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#async-await">1.1&nbsp;&nbsp;async/await</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#描述">1.2&nbsp;&nbsp;描述</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#🌰">1.2.1&nbsp;&nbsp;🌰</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#错误处理-try-catch">2&nbsp;&nbsp;<b>错误处理 (try/catch)</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#async-await-hell">3&nbsp;&nbsp;<b>async/await hell</b></a>
-                    
-                </div>
-            </div>
             
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                 
                 <i class="fab fa-github"></i>
                 
@@ -150,7 +127,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-03-12T12:10:26.000Z" itemprop="datePublished">3月 12 2019</time>
+            
+                <time datetime="2019-03-12T12:10:26.000Z" itemprop="datePublished">3月 12 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -162,39 +141,39 @@
         <span class="column is-narrow">
             
             
-            3 分钟 read (About 401 words)
+            3 分钟 读完 (约 401 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
+        <html><head></head><body><p><img src="https://i.loli.net/2019/08/02/5d43f48fbfad527140.jpg" alt></p>
 <a id="more"></a>
 <h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><ul>
-<li>async/await 同 Promise、callback 一样是一种编写异步代码的方法。</li>
-<li>async/await 实际上是建立在 promises 之上的，其返回的是一个 promise。</li>
-<li>async/await 是非阻塞的。</li>
-<li>async/await 更像是同步代码，如果多个异步代码没有依赖性却使用了 await 会导致性能上的降低。</li>
+<li>async/await &#x540C; Promise&#x3001;callback &#x4E00;&#x6837;&#x662F;&#x4E00;&#x79CD;&#x7F16;&#x5199;&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>async/await &#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x5EFA;&#x7ACB;&#x5728; promises &#x4E4B;&#x4E0A;&#x7684;&#xFF0C;&#x5176;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4E00;&#x4E2A; promise&#x3002;</li>
+<li>async/await &#x662F;&#x975E;&#x963B;&#x585E;&#x7684;&#x3002;</li>
+<li>async/await &#x66F4;&#x50CF;&#x662F;&#x540C;&#x6B65;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x679C;&#x591A;&#x4E2A;&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x6CA1;&#x6709;&#x4F9D;&#x8D56;&#x6027;&#x5374;&#x4F7F;&#x7528;&#x4E86; await &#x4F1A;&#x5BFC;&#x81F4;&#x6027;&#x80FD;&#x4E0A;&#x7684;&#x964D;&#x4F4E;&#x3002;</li>
 </ul>
-<h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>当调用一个 async 函数时，会返回一个 Promise 对象。当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。</p>
-<p>async 函数中可能会有 await 表达式，这会使 async 函数暂停执行，等待 Promise 的结果出来，然后恢复 async 函数的执行并返回解析值（resolved）。</p>
-<div class="tip"><br>注意， await 关键字仅仅在 async function中有效。如果在 async function函数体外使用 await ，你只会得到一个语法错误（SyntaxError）。<br></div>
+<h3 id="&#x63CF;&#x8FF0;"><a href="#&#x63CF;&#x8FF0;" class="headerlink" title="&#x63CF;&#x8FF0;"></a>&#x63CF;&#x8FF0;</h3><p>&#x5F53;&#x8C03;&#x7528;&#x4E00;&#x4E2A; async &#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; Promise &#x5BF9;&#x8C61;&#x3002;&#x5F53;&#x8FD9;&#x4E2A; async &#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x503C;&#x65F6;&#xFF0C;Promise &#x7684; resolve &#x65B9;&#x6CD5;&#x4F1A;&#x8D1F;&#x8D23;&#x4F20;&#x9012;&#x8FD9;&#x4E2A;&#x503C;&#xFF1B;&#x5F53; async &#x51FD;&#x6570;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;Promise &#x7684; reject &#x65B9;&#x6CD5;&#x4E5F;&#x4F1A;&#x4F20;&#x9012;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#x503C;&#x3002;</p>
+<p>async &#x51FD;&#x6570;&#x4E2D;&#x53EF;&#x80FD;&#x4F1A;&#x6709; await &#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x8FD9;&#x4F1A;&#x4F7F; async &#x51FD;&#x6570;&#x6682;&#x505C;&#x6267;&#x884C;&#xFF0C;&#x7B49;&#x5F85; Promise &#x7684;&#x7ED3;&#x679C;&#x51FA;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x6062;&#x590D; async &#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#x5E76;&#x8FD4;&#x56DE;&#x89E3;&#x6790;&#x503C;&#xFF08;resolved&#xFF09;&#x3002;</p>
+<div class="tip"><br>&#x6CE8;&#x610F;&#xFF0C; await &#x5173;&#x952E;&#x5B57;&#x4EC5;&#x4EC5;&#x5728; async function&#x4E2D;&#x6709;&#x6548;&#x3002;&#x5982;&#x679C;&#x5728; async function&#x51FD;&#x6570;&#x4F53;&#x5916;&#x4F7F;&#x7528; await &#xFF0C;&#x4F60;&#x53EA;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#xFF08;SyntaxError&#xFF09;&#x3002;<br></div>
 
 <blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function</a></p>
 </blockquote>
-<h4 id="🌰"><a href="#🌰" class="headerlink" title="🌰"></a>🌰</h4><p>假设一个函数<code>getJsonData()</code> 来获取 Json 数据。</p>
+<h4 id="&#x1F330;"><a href="#&#x1F330;" class="headerlink" title="&#x1F330;"></a>&#x1F330;</h4><p>&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x51FD;&#x6570;<code>getJsonData()</code> &#x6765;&#x83B7;&#x53D6; Json &#x6570;&#x636E;&#x3002;</p>
 <p><code>promise</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="function"><span class="params">url</span> =&gt;</span> &#123;</span><br><span class="line">  getJsonData(url).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response.data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> request = <span class="hljs-function"><span class="hljs-params">url</span> =&gt;</span> {</span><br><span class="line">  getJsonData(url).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(response.data);</span><br><span class="line">  });</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 <p><code>async/await</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="keyword">async</span> url =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">await</span> getJsonData(url));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> request = <span class="hljs-keyword">async</span> url =&gt; {</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">await</span> getJsonData(url));</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 <blockquote>
-<p>看这样看起来，async/await 是不是简洁了很多？ 毕竟写一堆 <code>then</code> 也是很烦的。</p>
+<p>&#x770B;&#x8FD9;&#x6837;&#x770B;&#x8D77;&#x6765;&#xFF0C;async/await &#x662F;&#x4E0D;&#x662F;&#x7B80;&#x6D01;&#x4E86;&#x5F88;&#x591A;&#xFF1F; &#x6BD5;&#x7ADF;&#x5199;&#x4E00;&#x5806; <code>then</code> &#x4E5F;&#x662F;&#x5F88;&#x70E6;&#x7684;&#x3002;</p>
 </blockquote>
-<h2 id="错误处理-try-catch"><a href="#错误处理-try-catch" class="headerlink" title="错误处理 (try/catch)"></a>错误处理 (try/catch)</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code snippet</span><br></pre></td></tr></table></figure>
-<h2 id="async-await-hell"><a href="#async-await-hell" class="headerlink" title="async/await hell"></a>async/await hell</h2><blockquote class="colorquote danger"><p>async/await 把我们从曾经的<code>callback hell</code> 中解放，而现在，我们陷入了<code>async/await hell</code>。</p>
+<h2 id="&#x9519;&#x8BEF;&#x5904;&#x7406;-try-catch"><a href="#&#x9519;&#x8BEF;&#x5904;&#x7406;-try-catch" class="headerlink" title="&#x9519;&#x8BEF;&#x5904;&#x7406; (try/catch)"></a>&#x9519;&#x8BEF;&#x5904;&#x7406; (try/catch)</h2><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code snippet</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="async-await-hell"><a href="#async-await-hell" class="headerlink" title="async/await hell"></a>async/await hell</h2><blockquote class="colorquote danger"><p>async/await &#x628A;&#x6211;&#x4EEC;&#x4ECE;&#x66FE;&#x7ECF;&#x7684;<code>callback hell</code> &#x4E2D;&#x89E3;&#x653E;&#xFF0C;&#x800C;&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x9677;&#x5165;&#x4E86;<code>async/await hell</code>&#x3002;</p>
 </blockquote>
-
+</body></html>
     
     </div>
     
@@ -202,12 +181,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/03/22/拾遗JavaScript——this/">拾遗JavaScript——this</a>
+            <a href="/2019/03/22/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94this/">拾遗JavaScript——this</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/03/10/拾遗JavaScript——Promise/">拾遗JavaScript——Promise</a>
+            <a href="/2019/03/10/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94Promise/">拾遗JavaScript——Promise</a>
             
         </span>
     </div>
@@ -223,8 +202,9 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2019 mzw&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                &copy; 2020 mzw&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -233,7 +213,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asensiki">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                     
                     GitHub
                     
@@ -252,7 +232,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -388,14 +368,16 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -407,18 +389,20 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

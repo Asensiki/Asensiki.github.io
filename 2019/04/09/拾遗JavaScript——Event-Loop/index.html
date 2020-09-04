@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
 <title>拾遗JavaScript——Event Loop - Asensiki</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,29 +12,31 @@
 
 
 
+<meta name="keywords" content="blog">
+
 
 
     <meta property="og:type" content="article">
 <meta property="og:title" content="拾遗JavaScript——Event Loop">
-<meta property="og:url" content="http://asensiki.github.io/2019/04/09/拾遗JavaScript——Event-Loop/index.html">
+<meta property="og:url" content="http://subdriving.club/2019/04/09/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94Event-Loop/index.html">
 <meta property="og:site_name" content="Asensiki">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
 <meta property="og:image" content="https://developer.mozilla.org/files/4617/default.svg">
 <meta property="og:image" content="https://i.loli.net/2019/08/06/92GbLWtAEJXzM4q.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/06/j7xmqF3t5wlYpnS.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/06/kuzQnoVhrqPZ51m.png">
 <meta property="og:image" content="https://miro.medium.com/max/1400/1*lZ-KXoVNUSOwaq7q8zUBDg.png">
-<meta property="og:updated_time" content="2019-08-06T06:00:00.000Z">
+<meta property="article:published_time" content="2019-04-09T06:34:57.000Z">
+<meta property="article:modified_time" content="2019-04-09T06:34:57.000Z">
+<meta property="article:author" content="mzw">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拾遗JavaScript——Event Loop">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg">
 
 
 
 
-
-<link rel="icon" href="./source/images/logo.png">
 
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
@@ -47,7 +49,9 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
+
 
 <script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -66,7 +70,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -74,7 +78,9 @@
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/images/logo.png" alt height="28">
+                    
+                    <img src="/./images/mzw.png" alt="" height="28">
+                    
                 
             </a>
             <div class="navbar-burger">
@@ -86,75 +92,26 @@
         
         <div class="navbar-menu navbar-start">
             
-            <a class="navbar-item " href="/archives">Archives</a>
+            <a class="navbar-item "
+               href="/archives">Archives</a>
             
-            <a class="navbar-item " href="/categories">categories</a>
+            <a class="navbar-item "
+               href="/categories">categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">tags</a>
             
         </div>
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="Search" href="javascript:;">
+            <a class="navbar-item search" title="搜索" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
             
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#Event-Loop">1&nbsp;&nbsp;<b>Event Loop</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#一、基础知识">1.1&nbsp;&nbsp;一、基础知识</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#1、进程与线程">1.1.1&nbsp;&nbsp;1、进程与线程</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#Javascript是一门单线程语言">1.2&nbsp;&nbsp;Javascript是一门单线程语言</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#Call-Stack">1.2.1&nbsp;&nbsp;Call Stack</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#Heap">1.2.2&nbsp;&nbsp;Heap</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#Queue">1.2.3&nbsp;&nbsp;Queue</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#Event-Loop-1">1.2.4&nbsp;&nbsp;Event Loop</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#补充">1.3&nbsp;&nbsp;补充</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#宏任务-微任务">1.3.1&nbsp;&nbsp;宏任务/微任务</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#async-await">1.3.2&nbsp;&nbsp;async/await</a>
-                    
-                </div>
-            </div>
             
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/asensiki">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                 
                 <i class="fab fa-github"></i>
                 
@@ -175,7 +132,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-04-09T06:34:57.000Z" itemprop="datePublished">4月 9 2019</time>
+            
+                <time datetime="2019-04-09T06:34:57.000Z" itemprop="datePublished">4月 9 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -187,57 +146,57 @@
         <span class="column is-narrow">
             
             
-            12 分钟 read (About 1873 words)
+            12 分钟 读完 (约 1873 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
+        <html><head></head><body><p><img src="http://ww1.sinaimg.cn/large/006e42zIgy1g4a1bcnzrqj317f0ofwyd.jpg" alt></p>
 <a id="more"></a>
 <h1 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h1><hr>
-<h2 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h2><h3 id="1、进程与线程"><a href="#1、进程与线程" class="headerlink" title="1、进程与线程"></a>1、进程与线程</h3><ul>
-<li>进程：应用程序的执行实例，每一个进程都是由私有的虚拟地址空间、代码、数据个其他系统资源组成。</li>
-<li>线程：线程是进程内的一个独立执行单元，在不同的线程之间可以进行资源共享。</li>
+<h2 id="&#x4E00;&#x3001;&#x57FA;&#x7840;&#x77E5;&#x8BC6;"><a href="#&#x4E00;&#x3001;&#x57FA;&#x7840;&#x77E5;&#x8BC6;" class="headerlink" title="&#x4E00;&#x3001;&#x57FA;&#x7840;&#x77E5;&#x8BC6;"></a>&#x4E00;&#x3001;&#x57FA;&#x7840;&#x77E5;&#x8BC6;</h2><h3 id="1&#x3001;&#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;"><a href="#1&#x3001;&#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;" class="headerlink" title="1&#x3001;&#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;"></a>1&#x3001;&#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;</h3><ul>
+<li>&#x8FDB;&#x7A0B;&#xFF1A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6267;&#x884C;&#x5B9E;&#x4F8B;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x662F;&#x7531;&#x79C1;&#x6709;&#x7684;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3001;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x4E2A;&#x5176;&#x4ED6;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x7EC4;&#x6210;&#x3002;</li>
+<li>&#x7EBF;&#x7A0B;&#xFF1A;&#x7EBF;&#x7A0B;&#x662F;&#x8FDB;&#x7A0B;&#x5185;&#x7684;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x6267;&#x884C;&#x5355;&#x5143;&#xFF0C;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#x3002;</li>
 </ul>
 <blockquote class="colorquote info"><ul>
-<li><p>进程拥有独立的堆栈空间和数据段，每当启动一个新的进程必须分配给它独立的地址空间，建立众多的数据表来维护它的代码段、堆栈段和数据段。</p>
+<li><p>&#x8FDB;&#x7A0B;&#x62E5;&#x6709;&#x72EC;&#x7ACB;&#x7684;&#x5806;&#x6808;&#x7A7A;&#x95F4;&#x548C;&#x6570;&#x636E;&#x6BB5;&#xFF0C;&#x6BCF;&#x5F53;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x8FDB;&#x7A0B;&#x5FC5;&#x987B;&#x5206;&#x914D;&#x7ED9;&#x5B83;&#x72EC;&#x7ACB;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#xFF0C;&#x5EFA;&#x7ACB;&#x4F17;&#x591A;&#x7684;&#x6570;&#x636E;&#x8868;&#x6765;&#x7EF4;&#x62A4;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x6BB5;&#x3001;&#x5806;&#x6808;&#x6BB5;&#x548C;&#x6570;&#x636E;&#x6BB5;&#x3002;</p>
 </li>
-<li><p>线程拥有独立的堆栈空间，但是共享数据段，它们彼此之间使用相同的地址空间，共享大部分数据，比进程更加节俭，开销比较小，切换速度快，效率高。  </p>
+<li><p>&#x7EBF;&#x7A0B;&#x62E5;&#x6709;&#x72EC;&#x7ACB;&#x7684;&#x5806;&#x6808;&#x7A7A;&#x95F4;&#xFF0C;&#x4F46;&#x662F;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x6BB5;&#xFF0C;&#x5B83;&#x4EEC;&#x5F7C;&#x6B64;&#x4E4B;&#x95F4;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#xFF0C;&#x5171;&#x4EAB;&#x5927;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x6BD4;&#x8FDB;&#x7A0B;&#x66F4;&#x52A0;&#x8282;&#x4FED;&#xFF0C;&#x5F00;&#x9500;&#x6BD4;&#x8F83;&#x5C0F;&#xFF0C;&#x5207;&#x6362;&#x901F;&#x5EA6;&#x5FEB;&#xFF0C;&#x6548;&#x7387;&#x9AD8;&#x3002;  </p>
 </li>
 </ul>
 </blockquote>
-<p> <strong>一句话总结:</strong> </p>
-<p>  进程：资源分配的最小单位</p>
-<p>  线程：程序执行的最小单位</p>
+<p> <strong>&#x4E00;&#x53E5;&#x8BDD;&#x603B;&#x7ED3;:</strong> </p>
+<p>  &#x8FDB;&#x7A0B;&#xFF1A;&#x8D44;&#x6E90;&#x5206;&#x914D;&#x7684;&#x6700;&#x5C0F;&#x5355;&#x4F4D;</p>
+<p>  &#x7EBF;&#x7A0B;&#xFF1A;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x7684;&#x6700;&#x5C0F;&#x5355;&#x4F4D;</p>
 <hr>
-<h2 id="Javascript是一门单线程语言"><a href="#Javascript是一门单线程语言" class="headerlink" title="Javascript是一门单线程语言"></a><strong>Javascript是一门单线程语言</strong></h2><p><strong>Why??</strong><br>众所周知，多线程操作可以实现应用的并行处理，充分利用CPU资源提高性能和吞吐量。现在很多语言都支持多核并行处理技术。</p>
-<p>但Javascript….😂</p>
-<p><strong>Javascript</strong> 是一门脚本语言，最初设计用于运行在浏览器环境，试想一下如果有2个同步线程在跑，一个在执行DOM的插入，另一个删除DOM，浏览器会？？？？</p>
-<p>So…这意味着它可以一次处理一个任务或一次处理一段代码。它有一个调用堆栈，它与堆之类的其他部分一起构成了Javascript并发模型（在V8内部实现）。</p>
+<h2 id="Javascript&#x662F;&#x4E00;&#x95E8;&#x5355;&#x7EBF;&#x7A0B;&#x8BED;&#x8A00;"><a href="#Javascript&#x662F;&#x4E00;&#x95E8;&#x5355;&#x7EBF;&#x7A0B;&#x8BED;&#x8A00;" class="headerlink" title="Javascript&#x662F;&#x4E00;&#x95E8;&#x5355;&#x7EBF;&#x7A0B;&#x8BED;&#x8A00;"></a><strong>Javascript&#x662F;&#x4E00;&#x95E8;&#x5355;&#x7EBF;&#x7A0B;&#x8BED;&#x8A00;</strong></h2><p><strong>Why??</strong><br>&#x4F17;&#x6240;&#x5468;&#x77E5;&#xFF0C;&#x591A;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5E94;&#x7528;&#x7684;&#x5E76;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x5145;&#x5206;&#x5229;&#x7528;CPU&#x8D44;&#x6E90;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x548C;&#x541E;&#x5410;&#x91CF;&#x3002;&#x73B0;&#x5728;&#x5F88;&#x591A;&#x8BED;&#x8A00;&#x90FD;&#x652F;&#x6301;&#x591A;&#x6838;&#x5E76;&#x884C;&#x5904;&#x7406;&#x6280;&#x672F;&#x3002;</p>
+<p>&#x4F46;Javascript&#x2026;.&#x1F602;</p>
+<p><strong>Javascript</strong> &#x662F;&#x4E00;&#x95E8;&#x811A;&#x672C;&#x8BED;&#x8A00;&#xFF0C;&#x6700;&#x521D;&#x8BBE;&#x8BA1;&#x7528;&#x4E8E;&#x8FD0;&#x884C;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x73AF;&#x5883;&#xFF0C;&#x8BD5;&#x60F3;&#x4E00;&#x4E0B;&#x5982;&#x679C;&#x6709;2&#x4E2A;&#x540C;&#x6B65;&#x7EBF;&#x7A0B;&#x5728;&#x8DD1;&#xFF0C;&#x4E00;&#x4E2A;&#x5728;&#x6267;&#x884C;DOM&#x7684;&#x63D2;&#x5165;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x5220;&#x9664;DOM&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x4F1A;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF1F;</p>
+<p>So&#x2026;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5B83;&#x53EF;&#x4EE5;&#x4E00;&#x6B21;&#x5904;&#x7406;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x6216;&#x4E00;&#x6B21;&#x5904;&#x7406;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x3002;&#x5B83;&#x6709;&#x4E00;&#x4E2A;&#x8C03;&#x7528;&#x5806;&#x6808;&#xFF0C;&#x5B83;&#x4E0E;&#x5806;&#x4E4B;&#x7C7B;&#x7684;&#x5176;&#x4ED6;&#x90E8;&#x5206;&#x4E00;&#x8D77;&#x6784;&#x6210;&#x4E86;Javascript&#x5E76;&#x53D1;&#x6A21;&#x578B;&#xFF08;&#x5728;V8&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#xFF09;&#x3002;</p>
 <center> <img src="https://developer.mozilla.org/files/4617/default.svg" alt> </center>
 
 
-<h3 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h3><p><code>Call Stack：</code>它是一个记录函数调用的数据结构，当我们调用函数时，函数会被推入这个堆栈，但函数返回时按先入后出的规则依次推出。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a * b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> multiply(n, n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printSquare</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> squared = square(n);</span><br><span class="line">  <span class="built_in">console</span>.log(squared);</span><br><span class="line">&#125;</span><br><span class="line">printSquare(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
-<p>通过断点调试可以很清楚的看到调用堆栈</p>
+<h3 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h3><p><code>Call Stack&#xFF1A;</code>&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x8BB0;&#x5F55;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x51FD;&#x6570;&#x4F1A;&#x88AB;&#x63A8;&#x5165;&#x8FD9;&#x4E2A;&#x5806;&#x6808;&#xFF0C;&#x4F46;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x65F6;&#x6309;&#x5148;&#x5165;&#x540E;&#x51FA;&#x7684;&#x89C4;&#x5219;&#x4F9D;&#x6B21;&#x63A8;&#x51FA;&#x3002;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params">a, b</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">return</span> a * b;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params">n</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">return</span> multiply(n, n);</span><br><span class="line">}</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printSquare</span>(<span class="hljs-params">n</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> squared = square(n);</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(squared);</span><br><span class="line">}</span><br><span class="line">printSquare(<span class="hljs-number">4</span>);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>&#x901A;&#x8FC7;&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x53EF;&#x4EE5;&#x5F88;&#x6E05;&#x695A;&#x7684;&#x770B;&#x5230;&#x8C03;&#x7528;&#x5806;&#x6808;</p>
 <p><img src="https://i.loli.net/2019/08/06/92GbLWtAEJXzM4q.png" alt="Call Stack"></p>
-<p>当函数执行完返回时，依次从栈顶推出。</p>
+<p>&#x5F53;&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#x8FD4;&#x56DE;&#x65F6;&#xFF0C;&#x4F9D;&#x6B21;&#x4ECE;&#x6808;&#x9876;&#x63A8;&#x51FA;&#x3002;</p>
 <p><img src="https://i.loli.net/2019/08/06/j7xmqF3t5wlYpnS.png" alt></p>
-<h3 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h3><p><code>heap：</code>变量所有的内存分配都在在堆中进行。</p>
-<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><p><code>Javascript</code>单线程任务被分为同步任务和异步任务，同步任务会在调用栈中按照顺序等待主线程依次执行，异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"2"</span>);</span><br><span class="line">&#125;, <span class="number">3</span> * <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h3><p><code>heap&#xFF1A;</code>&#x53D8;&#x91CF;&#x6240;&#x6709;&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x90FD;&#x5728;&#x5728;&#x5806;&#x4E2D;&#x8FDB;&#x884C;&#x3002;</p>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><p><code>Javascript</code>&#x5355;&#x7EBF;&#x7A0B;&#x4EFB;&#x52A1;&#x88AB;&#x5206;&#x4E3A;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#x548C;&#x5F02;&#x6B65;&#x4EFB;&#x52A1;&#xFF0C;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#x4F1A;&#x5728;&#x8C03;&#x7528;&#x6808;&#x4E2D;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x7B49;&#x5F85;&#x4E3B;&#x7EBF;&#x7A0B;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#xFF0C;&#x5F02;&#x6B65;&#x4EFB;&#x52A1;&#x4F1A;&#x5728;&#x5F02;&#x6B65;&#x4EFB;&#x52A1;&#x6709;&#x4E86;&#x7ED3;&#x679C;&#x540E;&#xFF0C;&#x5C06;&#x6CE8;&#x518C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x653E;&#x5165;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x4E2D;&#x7B49;&#x5F85;&#x4E3B;&#x7EBF;&#x7A0B;&#x7A7A;&#x95F2;&#x7684;&#x65F6;&#x5019;&#xFF08;&#x8C03;&#x7528;&#x6808;&#x88AB;&#x6E05;&#x7A7A;&#xFF09;&#xFF0C;&#x88AB;&#x8BFB;&#x53D6;&#x5230;&#x6808;&#x5185;&#x7B49;&#x5F85;&#x4E3B;&#x7EBF;&#x7A0B;&#x7684;&#x6267;&#x884C;&#x3002;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;1&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;2&quot;</span>);</span><br><span class="line">}, <span class="hljs-number">3</span> * <span class="hljs-number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;3&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1</span></span><br><span class="line"><span class="hljs-comment">// 3</span></span><br><span class="line"><span class="hljs-comment">// 2</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p><img src="https://i.loli.net/2019/08/06/kuzQnoVhrqPZ51m.png" alt></p>
-<blockquote class="colorquote info"><p>如图所示：<br>执行栈先处理同步任务<code>console.log(&#39;1&#39;)</code>，执行完后推出栈，控制台输出<code>1</code>,<code>setTimeout()</code>进入执行栈但不会执行，而是由Web API 处理完毕后，加入任务队列等待执行栈的同步任务执行完，同步任务<code>console.log(&#39;3&#39;)</code>进入执行栈，执行完毕后推出栈，当执行栈为null时，任务队列中的任务推入执行栈执行。</p>
-<p>整个过程是循环不断的，这样的运行机制称为<strong>Event Loop</strong></p>
+<blockquote class="colorquote info"><p>&#x5982;&#x56FE;&#x6240;&#x793A;&#xFF1A;<br>&#x6267;&#x884C;&#x6808;&#x5148;&#x5904;&#x7406;&#x540C;&#x6B65;&#x4EFB;&#x52A1;<code>console.log(&apos;1&apos;)</code>&#xFF0C;&#x6267;&#x884C;&#x5B8C;&#x540E;&#x63A8;&#x51FA;&#x6808;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>1</code>,<code>setTimeout()</code>&#x8FDB;&#x5165;&#x6267;&#x884C;&#x6808;&#x4F46;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x7531;Web API &#x5904;&#x7406;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x52A0;&#x5165;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x7B49;&#x5F85;&#x6267;&#x884C;&#x6808;&#x7684;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x540C;&#x6B65;&#x4EFB;&#x52A1;<code>console.log(&apos;3&apos;)</code>&#x8FDB;&#x5165;&#x6267;&#x884C;&#x6808;&#xFF0C;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#x63A8;&#x51FA;&#x6808;&#xFF0C;&#x5F53;&#x6267;&#x884C;&#x6808;&#x4E3A;null&#x65F6;&#xFF0C;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x4EFB;&#x52A1;&#x63A8;&#x5165;&#x6267;&#x884C;&#x6808;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x662F;&#x5FAA;&#x73AF;&#x4E0D;&#x65AD;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8FD0;&#x884C;&#x673A;&#x5236;&#x79F0;&#x4E3A;<strong>Event Loop</strong></p>
 </blockquote>
 <h3 id="Event-Loop-1"><a href="#Event-Loop-1" class="headerlink" title="Event Loop"></a>Event Loop</h3><p><img src="https://miro.medium.com/max/1400/1*lZ-KXoVNUSOwaq7q8zUBDg.png" alt></p>
-<center>侵删</center>
+<center>&#x4FB5;&#x5220;</center>
 
 <hr>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="宏任务-微任务"><a href="#宏任务-微任务" class="headerlink" title="宏任务/微任务"></a>宏任务/微任务</h3><p>宏任务（Task）：</p>
+<h2 id="&#x8865;&#x5145;"><a href="#&#x8865;&#x5145;" class="headerlink" title="&#x8865;&#x5145;"></a>&#x8865;&#x5145;</h2><h3 id="&#x5B8F;&#x4EFB;&#x52A1;-&#x5FAE;&#x4EFB;&#x52A1;"><a href="#&#x5B8F;&#x4EFB;&#x52A1;-&#x5FAE;&#x4EFB;&#x52A1;" class="headerlink" title="&#x5B8F;&#x4EFB;&#x52A1;/&#x5FAE;&#x4EFB;&#x52A1;"></a>&#x5B8F;&#x4EFB;&#x52A1;/&#x5FAE;&#x4EFB;&#x52A1;</h3><p>&#x5B8F;&#x4EFB;&#x52A1;&#xFF08;Task&#xFF09;&#xFF1A;</p>
 <ul>
-<li>整体代码script</li>
+<li>&#x6574;&#x4F53;&#x4EE3;&#x7801;script</li>
 <li>setTimeout</li>
 <li>setInterval</li>
 <li>setImmediate</li>
@@ -246,38 +205,38 @@
 <li>UI</li>
 <li>rendering</li>
 </ul>
-<p>微任务(Microtask)：</p>
+<p>&#x5FAE;&#x4EFB;&#x52A1;(Microtask)&#xFF1A;</p>
 <ul>
-<li>Promise（Promise中的then、catch才是宏任务，本身内部代码并不是）</li>
-<li>process.nextTick（nodejs环境中）</li>
-<li>MutationObserver： 提供了监视对DOM树所做更改的能力（<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver）" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver）</a></li>
+<li>Promise&#xFF08;Promise&#x4E2D;&#x7684;then&#x3001;catch&#x624D;&#x662F;&#x5B8F;&#x4EFB;&#x52A1;&#xFF0C;&#x672C;&#x8EAB;&#x5185;&#x90E8;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x662F;&#xFF09;</li>
+<li>process.nextTick&#xFF08;nodejs&#x73AF;&#x5883;&#x4E2D;&#xFF09;</li>
+<li>MutationObserver&#xFF1A; &#x63D0;&#x4F9B;&#x4E86;&#x76D1;&#x89C6;&#x5BF9;DOM&#x6811;&#x6240;&#x505A;&#x66F4;&#x6539;&#x7684;&#x80FD;&#x529B;&#xFF08;<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver&#xFF09;">https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver&#xFF09;</a></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'setTimeout1'</span>), <span class="number">0</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout2'</span>);</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">        <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'promise3'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'setTimeout4'</span>), <span class="number">0</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'setTimeout3'</span>), <span class="number">0</span>);</span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>逐步分析代码执行过程:<br>1、Run Script<br>2、开始轮询： <code>setTimeout1</code>、<code>setTimeout2</code>、<code>setTimeout3</code> 被推入Task Queue，<code>promise1</code>被推入Microtasks Queue。<br>此时Task Queue中：[setTimeout1,setTimeout2,setTimeout3]，Microtasks Queue中：[promise1]。<br>3、微任务优于宏任务之前执行，所以先执行Microtasks Queue中的队列<code>promise1</code>，控制台输出：promise1。随后依次执行<code>setTimeout1</code>、<code>setTimeout2</code>、<code>setTimeout3</code>，<br>4、执行：<code>setTimeout1</code>： 输出<code>setTimeout1</code>；<br>执行<code>setTimeout2</code>: 输出<code>setTimeout2</code>，发现一个微任务<code>promise2</code>,将它加入到Microtasks Queue，发现一个宏任务<code>setTimeout4</code>，将它加入Task；<br>执行<code>setTimeout3</code>：输出 <code>setTimeout3</code>;<br>5、此时Microtasks Queue中有<code>[promise2]</code>，执行<code>promise2</code>,输出<code>promise2</code>，这里又有个微任务<code>promise3</code>,将<code>promise3</code>加入Microtasks Queue，执行<code>console.log(5)</code>,输出<code>5</code>。<br>6、此时Microtasks Queue不为null，还有任务<code>promise3</code>,执行输出<code>promise3</code>。<br>7、Microtasks Queue为null，检查Task Queue，发现还有一个宏任务 <code>setTimeout4</code>，执行并输出<code>setTimeout4</code>。</p>
-<p>因此代码执行的结果为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">promise1</span><br><span class="line">setTimeout1</span><br><span class="line">setTimeout2</span><br><span class="line">setTimeout3</span><br><span class="line">promise2</span><br><span class="line"><span class="number">5</span></span><br><span class="line">promise3</span><br><span class="line">setTimeout4</span><br></pre></td></tr></table></figure>
-<blockquote class="colorquote info"><p>微任务比宏任务优先执行，当微任务队列不为<code>null</code>时，继续处理微任务队列，等到全部处理完毕，则检查宏任务队列并处理队列的任务。</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;setTimeout1&apos;</span>), <span class="hljs-number">0</span>);</span><br><span class="line"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;setTimeout2&apos;</span>);</span><br><span class="line">    <span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function">() =&gt;</span> {</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;promise2&apos;</span>);</span><br><span class="line">        <span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function">() =&gt;</span> {</span><br><span class="line">            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;promise3&apos;</span>);</span><br><span class="line">        })</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">5</span>)</span><br><span class="line">    })</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;setTimeout4&apos;</span>), <span class="hljs-number">0</span>);</span><br><span class="line">}, <span class="hljs-number">0</span>);</span><br><span class="line"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;setTimeout3&apos;</span>), <span class="hljs-number">0</span>);</span><br><span class="line"><span class="hljs-built_in">Promise</span>.resolve().then(<span class="hljs-function">() =&gt;</span> {</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;promise1&apos;</span>);</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x9010;&#x6B65;&#x5206;&#x6790;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x8FC7;&#x7A0B;:<br>1&#x3001;Run Script<br>2&#x3001;&#x5F00;&#x59CB;&#x8F6E;&#x8BE2;&#xFF1A; <code>setTimeout1</code>&#x3001;<code>setTimeout2</code>&#x3001;<code>setTimeout3</code> &#x88AB;&#x63A8;&#x5165;Task Queue&#xFF0C;<code>promise1</code>&#x88AB;&#x63A8;&#x5165;Microtasks Queue&#x3002;<br>&#x6B64;&#x65F6;Task Queue&#x4E2D;&#xFF1A;[setTimeout1,setTimeout2,setTimeout3]&#xFF0C;Microtasks Queue&#x4E2D;&#xFF1A;[promise1]&#x3002;<br>3&#x3001;&#x5FAE;&#x4EFB;&#x52A1;&#x4F18;&#x4E8E;&#x5B8F;&#x4EFB;&#x52A1;&#x4E4B;&#x524D;&#x6267;&#x884C;&#xFF0C;&#x6240;&#x4EE5;&#x5148;&#x6267;&#x884C;Microtasks Queue&#x4E2D;&#x7684;&#x961F;&#x5217;<code>promise1</code>&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#xFF1A;promise1&#x3002;&#x968F;&#x540E;&#x4F9D;&#x6B21;&#x6267;&#x884C;<code>setTimeout1</code>&#x3001;<code>setTimeout2</code>&#x3001;<code>setTimeout3</code>&#xFF0C;<br>4&#x3001;&#x6267;&#x884C;&#xFF1A;<code>setTimeout1</code>&#xFF1A; &#x8F93;&#x51FA;<code>setTimeout1</code>&#xFF1B;<br>&#x6267;&#x884C;<code>setTimeout2</code>: &#x8F93;&#x51FA;<code>setTimeout2</code>&#xFF0C;&#x53D1;&#x73B0;&#x4E00;&#x4E2A;&#x5FAE;&#x4EFB;&#x52A1;<code>promise2</code>,&#x5C06;&#x5B83;&#x52A0;&#x5165;&#x5230;Microtasks Queue&#xFF0C;&#x53D1;&#x73B0;&#x4E00;&#x4E2A;&#x5B8F;&#x4EFB;&#x52A1;<code>setTimeout4</code>&#xFF0C;&#x5C06;&#x5B83;&#x52A0;&#x5165;Task&#xFF1B;<br>&#x6267;&#x884C;<code>setTimeout3</code>&#xFF1A;&#x8F93;&#x51FA; <code>setTimeout3</code>;<br>5&#x3001;&#x6B64;&#x65F6;Microtasks Queue&#x4E2D;&#x6709;<code>[promise2]</code>&#xFF0C;&#x6267;&#x884C;<code>promise2</code>,&#x8F93;&#x51FA;<code>promise2</code>&#xFF0C;&#x8FD9;&#x91CC;&#x53C8;&#x6709;&#x4E2A;&#x5FAE;&#x4EFB;&#x52A1;<code>promise3</code>,&#x5C06;<code>promise3</code>&#x52A0;&#x5165;Microtasks Queue&#xFF0C;&#x6267;&#x884C;<code>console.log(5)</code>,&#x8F93;&#x51FA;<code>5</code>&#x3002;<br>6&#x3001;&#x6B64;&#x65F6;Microtasks Queue&#x4E0D;&#x4E3A;null&#xFF0C;&#x8FD8;&#x6709;&#x4EFB;&#x52A1;<code>promise3</code>,&#x6267;&#x884C;&#x8F93;&#x51FA;<code>promise3</code>&#x3002;<br>7&#x3001;Microtasks Queue&#x4E3A;null&#xFF0C;&#x68C0;&#x67E5;Task Queue&#xFF0C;&#x53D1;&#x73B0;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x5B8F;&#x4EFB;&#x52A1; <code>setTimeout4</code>&#xFF0C;&#x6267;&#x884C;&#x5E76;&#x8F93;&#x51FA;<code>setTimeout4</code>&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">promise1</span><br><span class="line">setTimeout1</span><br><span class="line">setTimeout2</span><br><span class="line">setTimeout3</span><br><span class="line">promise2</span><br><span class="line"><span class="hljs-number">5</span></span><br><span class="line">promise3</span><br><span class="line">setTimeout4</span><br></pre></td></tr></tbody></table></figure>
+<blockquote class="colorquote info"><p>&#x5FAE;&#x4EFB;&#x52A1;&#x6BD4;&#x5B8F;&#x4EFB;&#x52A1;&#x4F18;&#x5148;&#x6267;&#x884C;&#xFF0C;&#x5F53;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x4E0D;&#x4E3A;<code>null</code>&#x65F6;&#xFF0C;&#x7EE7;&#x7EED;&#x5904;&#x7406;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#xFF0C;&#x7B49;&#x5230;&#x5168;&#x90E8;&#x5904;&#x7406;&#x5B8C;&#x6BD5;&#xFF0C;&#x5219;&#x68C0;&#x67E5;&#x5B8F;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x5E76;&#x5904;&#x7406;&#x961F;&#x5217;&#x7684;&#x4EFB;&#x52A1;&#x3002;</p>
 </blockquote>
-<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><p><code>async/await</code> 与 <code>promise</code> 一样同属于微任务。（async函数返回的是一个promise）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"async1 start"</span>);</span><br><span class="line">  <span class="keyword">await</span> async2();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"async1 end"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"async2"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"script start"</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"setTimeout"</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line">async1();</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"promise1"</span>);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"promise2"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"script end"</span>);</span><br></pre></td></tr></table></figure>
-<p>以上代码执行过程：<br>1、async1()、async2（）函数定义。<br>2、同步任务，控制台输出：<code>script start</code>。<br>3、<code>setTimeout</code>,加入宏任务队列。<br>4、执行函数async1()。</p>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><p><code>async/await</code> &#x4E0E; <code>promise</code> &#x4E00;&#x6837;&#x540C;&#x5C5E;&#x4E8E;&#x5FAE;&#x4EFB;&#x52A1;&#x3002;&#xFF08;async&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4E00;&#x4E2A;promise&#xFF09;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;async1 start&quot;</span>);</span><br><span class="line">  <span class="hljs-keyword">await</span> async2();</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;async1 end&quot;</span>);</span><br><span class="line">}</span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async2</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;async2&quot;</span>);</span><br><span class="line">}</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;script start&quot;</span>);</span><br><span class="line"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;setTimeout&quot;</span>);</span><br><span class="line">}, <span class="hljs-number">0</span>);</span><br><span class="line">async1();</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;promise1&quot;</span>);</span><br><span class="line">  resolve();</span><br><span class="line">}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;promise2&quot;</span>);</span><br><span class="line">});</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;script end&quot;</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#xFF1A;<br>1&#x3001;async1()&#x3001;async2&#xFF08;&#xFF09;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x3002;<br>2&#x3001;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#xFF1A;<code>script start</code>&#x3002;<br>3&#x3001;<code>setTimeout</code>,&#x52A0;&#x5165;&#x5B8F;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x3002;<br>4&#x3001;&#x6267;&#x884C;&#x51FD;&#x6570;async1()&#x3002;</p>
 <ul>
-<li>a：同步任务，控制台输出<code>async1 start</code>。</li>
-<li>b：<code>await async2()</code> ，此时线程被阻塞，无法执行当前函数下面的代码。</li>
+<li>a&#xFF1A;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>async1 start</code>&#x3002;</li>
+<li>b&#xFF1A;<code>await async2()</code> &#xFF0C;&#x6B64;&#x65F6;&#x7EBF;&#x7A0B;&#x88AB;&#x963B;&#x585E;&#xFF0C;&#x65E0;&#x6CD5;&#x6267;&#x884C;&#x5F53;&#x524D;&#x51FD;&#x6570;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x3002;</li>
 </ul>
-<p>5、async2()：同步任务，控制台输出<code>async2</code>，<br>6、由于async1()中，<code>await</code>阻塞里线程，无法回到async1()，因此继续执行async1()外面的代码。<br>7、Promise，控制台输出<code>promise1</code>，将<code>then()=&gt;{console.log(&quot;promise2&quot;)}</code>回调加入微任务队列。<br>8、同步任务,控制台输出<code>script end</code>，此时代码执行完。<br>9、<code>await</code>阻塞线程结束。</p>
+<p>5&#x3001;async2()&#xFF1A;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>async2</code>&#xFF0C;<br>6&#x3001;&#x7531;&#x4E8E;async1()&#x4E2D;&#xFF0C;<code>await</code>&#x963B;&#x585E;&#x91CC;&#x7EBF;&#x7A0B;&#xFF0C;&#x65E0;&#x6CD5;&#x56DE;&#x5230;async1()&#xFF0C;&#x56E0;&#x6B64;&#x7EE7;&#x7EED;&#x6267;&#x884C;async1()&#x5916;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x3002;<br>7&#x3001;Promise&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>promise1</code>&#xFF0C;&#x5C06;<code>then()=&gt;{console.log(&quot;promise2&quot;)}</code>&#x56DE;&#x8C03;&#x52A0;&#x5165;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x3002;<br>8&#x3001;&#x540C;&#x6B65;&#x4EFB;&#x52A1;,&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>script end</code>&#xFF0C;&#x6B64;&#x65F6;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x5B8C;&#x3002;<br>9&#x3001;<code>await</code>&#x963B;&#x585E;&#x7EBF;&#x7A0B;&#x7ED3;&#x675F;&#x3002;</p>
 <ul>
-<li>a:回到函数async1()，<code>async2()</code>返回一个<code>promise.resolve(undefined).then(undefined)</code>，将<code>then(undefined)</code>加入微任务队列。</li>
-<li>b:处理微任务队列<code>then()=&gt;{console.log(&quot;promise2&quot;)}</code>、<code>then(undefined)</code>，控制台输出<code>promise2</code>。</li>
-<li>c:执行<code>console.log(&quot;async1 end&quot;)</code>，控制台输出<code>async1 end</code>。</li>
+<li>a:&#x56DE;&#x5230;&#x51FD;&#x6570;async1()&#xFF0C;<code>async2()</code>&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;<code>promise.resolve(undefined).then(undefined)</code>&#xFF0C;&#x5C06;<code>then(undefined)</code>&#x52A0;&#x5165;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x3002;</li>
+<li>b:&#x5904;&#x7406;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;<code>then()=&gt;{console.log(&quot;promise2&quot;)}</code>&#x3001;<code>then(undefined)</code>&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>promise2</code>&#x3002;</li>
+<li>c:&#x6267;&#x884C;<code>console.log(&quot;async1 end&quot;)</code>&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>async1 end</code>&#x3002;</li>
 </ul>
-<p>10、处理宏任务队列，控制台输出<code>setTimeout</code>。</p>
-<p>所以控制台输出：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">promise2</span><br><span class="line">async1 end</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure></p>
-<blockquote class="colorquote info"><p>async/await本质上还是基于Promise的一些封装。<br>执行async函数内遇到await fn()时，会阻塞线程跳出async函数，然后再次回到await fn()处，如果fn()返回的是Promise对象还要再次跳出async1()函数体外继续执行以外的代码。</p>
+<p>10&#x3001;&#x5904;&#x7406;&#x5B8F;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;<code>setTimeout</code>&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#xFF1A;<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">promise2</span><br><span class="line">async1 end</span><br><span class="line"><span class="hljs-built_in">setTimeout</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<blockquote class="colorquote info"><p>async/await&#x672C;&#x8D28;&#x4E0A;&#x8FD8;&#x662F;&#x57FA;&#x4E8E;Promise&#x7684;&#x4E00;&#x4E9B;&#x5C01;&#x88C5;&#x3002;<br>&#x6267;&#x884C;async&#x51FD;&#x6570;&#x5185;&#x9047;&#x5230;await fn()&#x65F6;&#xFF0C;&#x4F1A;&#x963B;&#x585E;&#x7EBF;&#x7A0B;&#x8DF3;&#x51FA;async&#x51FD;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x6B21;&#x56DE;&#x5230;await fn()&#x5904;&#xFF0C;&#x5982;&#x679C;fn()&#x8FD4;&#x56DE;&#x7684;&#x662F;Promise&#x5BF9;&#x8C61;&#x8FD8;&#x8981;&#x518D;&#x6B21;&#x8DF3;&#x51FA;async1()&#x51FD;&#x6570;&#x4F53;&#x5916;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x4EE5;&#x5916;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
 </blockquote>
-<h4 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h4><blockquote class="colorquote danger"><p>在最新的Chrome（76.0.3809.87）中测试以上代码得到结果为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">async1 end</span><br><span class="line">promise2</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure>
-</blockquote>
+<h4 id="&#x8865;&#x5145;-1"><a href="#&#x8865;&#x5145;-1" class="headerlink" title="&#x8865;&#x5145;"></a>&#x8865;&#x5145;</h4><blockquote class="colorquote danger"><p>&#x5728;&#x6700;&#x65B0;&#x7684;Chrome&#xFF08;76.0.3809.87&#xFF09;&#x4E2D;&#x6D4B;&#x8BD5;&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x5F97;&#x5230;&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">async1 end</span><br><span class="line">promise2</span><br><span class="line"><span class="hljs-built_in">setTimeout</span></span><br></pre></td></tr></tbody></table></figure>
+</blockquote></body></html>
     
     </div>
     
@@ -285,12 +244,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2019/04/10/拾遗JavaScript——原型与原型链/">拾遗JavaScript——原型与原型链</a>
+            <a href="/2019/04/10/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/">拾遗JavaScript——原型与原型链</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2019/03/27/拾遗JavaScript——var-let-const/">拾遗JavaScript——var-let-const</a>
+            <a href="/2019/03/27/%E6%8B%BE%E9%81%97JavaScript%E2%80%94%E2%80%94var-let-const/">拾遗JavaScript——var-let-const</a>
             
         </span>
     </div>
@@ -306,8 +265,9 @@
     <div class="container">
         <div class="columns content">
             <div class="column is-narrow has-text-centered">
-                &copy; 2019 mzw&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                &copy; 2020 mzw&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -316,7 +276,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/asensiki">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/asensiki">
                     
                     GitHub
                     
@@ -335,7 +295,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -471,14 +431,16 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -490,18 +452,20 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>
